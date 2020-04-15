@@ -9,6 +9,7 @@ namespace Hackathon2
         public Character Player1 { get; set; }
         public Character Player2 { get; set; }
         public Character Winner { get; set; }
+        private UserAttackChoice _UserAttackChoice = new UserAttackChoice();
 
         public Fight(Character player1, Character player2)
         {
@@ -63,22 +64,12 @@ namespace Hackathon2
             
             while (attacker.PV > 0 && defender.PV > 0)
             {
-                if (UserAttackChoice(attacker) == "Physical Attack")
+                /*while(_UserAttackChoice.attackingPlayer != attacker)
                 {
-                    int numberOfAttack = GetNumberOfAttackPerTurn(attacker, defender);
-                    for (int i = 1; i <= numberOfAttack; i++)
-                    {
-                        attacker.PhysicalAttack(defender);
-                    }
-                }
-                else if (UserAttackChoice(attacker) == "Intellectual Attack")
+                }*/
+                if (_UserAttackChoice.attackingPlayer == attacker)
                 {
-                    attacker.IntellectualAttack(defender);
-                }
-
-                if(defender.PV <= 0)
-                {
-                    Winner = attacker;
+                    Attack(attacker, defender);
                 }
 
                 Character tempCharacter = attacker;
@@ -88,12 +79,40 @@ namespace Hackathon2
             return Winner;
         }
 
-        public string UserAttackChoice(Character character)
+        public void Attack(Character attacker, Character defender)
+        {
+           
+            if (_UserAttackChoice.playerAttackType == "Physical Attack")
+            {
+                int numberOfAttack = GetNumberOfAttackPerTurn(attacker, defender);
+                for (int i = 1; i <= numberOfAttack; i++)
+                {
+                    attacker.PhysicalAttack(defender);
+                }
+            }
+            else if (_UserAttackChoice.playerAttackType == "Intellectual Attack")
+            {
+                attacker.IntellectualAttack(defender);
+            }
+
+            if (defender.PV <= 0)
+            {
+                Winner = attacker;
+            }
+            
+        }
+
+        public void SetUserAttackChoice(UserAttackChoice userAttackChoice)
+        {
+            _UserAttackChoice = userAttackChoice;
+        }
+
+        /*public string UserAttackChoice(UserAttackChoice userAttack)
         {
             FightArena.GetActionJoueur1(character);
             string choice = "";
             // valeur du Bouton
             return choice;
-        }
+        }*/
     }
 }

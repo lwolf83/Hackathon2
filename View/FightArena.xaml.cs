@@ -18,16 +18,20 @@ namespace Hackathon2
     /// </summary>
     public partial class FightArena : UserControl
     {
+        public Character Joueur1 { get; set; }
+        public Character Joueur2 { get; set; }
+        public Fight Fight { get; set; }
+
         public FightArena()
         {
             InitializeComponent();
-            Character Joueur1 = ApiRequest.GetCharacter(58);
+            Joueur1 = ApiRequest.GetCharacter(58);
             Joueur1.Init();
-            Character Joueur2 = ApiRequest.GetCharacter(97);
+            Joueur2 = ApiRequest.GetCharacter(97);
             Joueur2.Init();
 
-            Fight fight = new Fight(Joueur1, Joueur2);
-            fight.Fighting();
+            Fight = new Fight(Joueur1, Joueur2);
+            Fight.Fighting();
         }
 
         public static  void GetActionJoueur1(Character character)
@@ -35,5 +39,36 @@ namespace Hackathon2
 
         }
 
+        private void J1_AttPhys_Btn(object sender, RoutedEventArgs e)
+        {
+            UserAttackChoice attackChoice = new UserAttackChoice();
+            attackChoice.attackingPlayer = Joueur1;
+            attackChoice.playerAttackType = "Physical Attack";
+            Fight.SetUserAttackChoice(attackChoice);
+        }
+
+        private void J1_AttInt_Btn(object sender, RoutedEventArgs e)
+        {
+            UserAttackChoice attackChoice = new UserAttackChoice();
+            attackChoice.attackingPlayer = Joueur1;
+            attackChoice.playerAttackType = "Intellectual Attack";
+            Fight.SetUserAttackChoice(attackChoice);
+        }
+
+        private void J2_AttPhys_Btn(object sender, RoutedEventArgs e)
+        {
+            UserAttackChoice attackChoice = new UserAttackChoice();
+            attackChoice.attackingPlayer = Joueur2;
+            attackChoice.playerAttackType = "Physical Attack";
+            Fight.SetUserAttackChoice(attackChoice);
+        }
+
+        private void J2_AttInt_Btn(object sender, RoutedEventArgs e)
+        {
+            UserAttackChoice attackChoice = new UserAttackChoice();
+            attackChoice.attackingPlayer = Joueur2;
+            attackChoice.playerAttackType = "Intellectual Attack";
+            Fight.SetUserAttackChoice(attackChoice);
+        }
     }
 }

@@ -13,15 +13,15 @@
         <Grid x:Name="JOne">
             <StackPanel>
                 <Label x:Name="PV1" Height="50"></Label>
-            <Button x:Name="J1P" Content="Attaque physique"/>
-            <Button x:Name="J1I" Content="Attaque intellectuelle"/>
+            <Button x:Name="J1P" Content="Attaque physique" Click="J1_AttPhys_Btn"/>
+                <Button x:Name="J1I" Content="Attaque intellectuelle" Click="J1_AttInt_Btn"/>
             </StackPanel>
         </Grid>
         <Grid x:Name="JTwo">
             <StackPanel>
              <Label x:Name="PV2" Height="50"></Label>
-            <Button x:Name="J2P"  Content="Attaque physique"/>
-            <Button x:Name="J2I"  Content="Attaque intellectuelle"/>
+                <Button x:Name="J2P"  Content="Attaque physique" Click="J2_AttPhys_Btn"/>
+                <Button x:Name="J2I"  Content="Attaque intellectuelle" Click="J2_AttInt_Btn"/>
             </StackPanel>
         </Grid>
     </StackPanel>
