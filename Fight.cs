@@ -8,6 +8,7 @@ namespace Hackathon2
     {
         public Character Player1 { get; set; }
         public Character Player2 { get; set; }
+        public Character Winner { get; set; }
 
         public Fight(Character player1, Character player2)
         {
@@ -55,28 +56,36 @@ namespace Hackathon2
             return numberAttack;
         }
 
-        public void Fighting()
+        public Character Fighting()
         {
             Character attacker = GetFirstPlayer();
             Character defender = GetSecondPlayer();
             
-
-            while (Player1.PV > 0 && Player2.PV > 0)
+            while (attacker.PV > 0 && defender.PV > 0)
             {
                 if (UserAttackChoice() == "Physical Attack")
                 {
                     int numberOfAttack = GetNumberOfAttackPerTurn(attacker, defender);
                     for (int i = 1; i <= numberOfAttack; i++)
                     {
-                        attacker.PhysicalAttack(defender, attacker);
+                        attacker.PhysicalAttack(defender);
                     }
-
                 }
                 else if (UserAttackChoice() == "Intellectual Attack")
                 {
-                    attacker.IntellectualAttack(defender, attacker);
+                    attacker.IntellectualAttack(defender);
                 }
+
+                if(defender.PV <= 0)
+                {
+                    Winner = attacker;
+                }
+
+                Character tempCharacter = attacker;
+                attacker = defender;
+                defender = tempCharacter;
             }
+            return Winner;
         }
 
         public string UserAttackChoice()

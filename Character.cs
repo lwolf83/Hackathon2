@@ -23,9 +23,9 @@ namespace Hackathon2
         }
 
 
-        public int PhysicalAttack(Character defender, Character attacker)
+        public int PhysicalAttack(Character defender)
         {
-            int attack = (attacker.powerstats.Strength + attacker.powerstats.Power) * attacker.powerstats.Combat;
+            int attack = (this.powerstats.Strength + this.powerstats.Power) * this.powerstats.Combat;
             int defense = (defender.powerstats.Combat) * (defender.powerstats.Durability) + defender.powerstats.Power;
 
             Random random = new Random();
@@ -36,15 +36,15 @@ namespace Hackathon2
             return defender.PV;
         }
 
-        public int IntellectualAttack(Character defender, Character attacker)
+        public int IntellectualAttack(Character defender)
         {
             Random random = new Random();
             double coefRandom = random.NextDouble();
             int coefRandom2 = random.Next(1, 5);
 
-            if (defender.powerstats.Intelligence < ((coefRandom * 0.7) * attacker.powerstats.Intelligence))
+            if (defender.powerstats.Intelligence < ((coefRandom * 0.7) * this.powerstats.Intelligence))
             {
-                int attack = (attacker.powerstats.Strength + attacker.powerstats.Power) * attacker.powerstats.Intelligence;
+                int attack = (this.powerstats.Strength + this.powerstats.Power) * this.powerstats.Intelligence;
                 int defense = (defender.powerstats.Intelligence) * (defender.powerstats.Durability) + defender.powerstats.Power;
 
                 int damages = Convert.ToInt32(Math.Round((double)(attack / defense)) * coefRandom);
