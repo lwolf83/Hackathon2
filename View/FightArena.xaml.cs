@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,19 +11,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hackathon2
+namespace Hackathon2.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour FightArena.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FightArena : UserControl
     {
-        public MainWindow()
+        public FightArena()
         {
             InitializeComponent();
-            Character test = ApiRequest.GetCharacter(58);
-            CharacterPicture.Picture.Source = new BitmapImage(
-                                                    new Uri(test.image.Url, UriKind.Absolute)); 
         }
     }
 }
