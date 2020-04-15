@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,16 +14,13 @@ using System.Windows.Shapes;
 namespace Hackathon2
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour CharacterPicture.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CharacterPicture : UserControl
     {
-        public MainWindow()
+        public CharacterPicture()
         {
             InitializeComponent();
-            Character test = ApiRequest.GetCharacter(58);
-            CharacterPicture.Picture.Source = new BitmapImage(
-                                                    new Uri(test.image.Url, UriKind.Absolute)); 
         }
     }
 }
