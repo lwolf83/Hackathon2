@@ -24,8 +24,8 @@ namespace Hackathon2
         {
             InitializeComponent();
             Character test = ApiRequest.GetCharacter(58);
-            CharacterPicture.Picture.Source = new BitmapImage(
-                                                    new Uri(test.image.Url, UriKind.Absolute)); 
+           /* CharacterPicture.Picture.Source = new BitmapImage(
+                                                    new Uri(test.image.Url, UriKind.Absolute)); */
         }
     }
 }

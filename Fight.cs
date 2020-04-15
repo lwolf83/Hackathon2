@@ -63,7 +63,7 @@ namespace Hackathon2
             
             while (attacker.PV > 0 && defender.PV > 0)
             {
-                if (UserAttackChoice() == "Physical Attack")
+                if (UserAttackChoice(attacker) == "Physical Attack")
                 {
                     int numberOfAttack = GetNumberOfAttackPerTurn(attacker, defender);
                     for (int i = 1; i <= numberOfAttack; i++)
@@ -71,7 +71,7 @@ namespace Hackathon2
                         attacker.PhysicalAttack(defender);
                     }
                 }
-                else if (UserAttackChoice() == "Intellectual Attack")
+                else if (UserAttackChoice(attacker) == "Intellectual Attack")
                 {
                     attacker.IntellectualAttack(defender);
                 }
@@ -88,8 +88,9 @@ namespace Hackathon2
             return Winner;
         }
 
-        public string UserAttackChoice()
+        public string UserAttackChoice(Character character)
         {
+            FightArena.GetActionJoueur1(character);
             string choice = "";
             // valeur du Bouton
             return choice;

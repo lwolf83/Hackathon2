@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hackathon2.View
+namespace Hackathon2
 {
     /// <summary>
     /// Logique d'interaction pour FightArena.xaml
@@ -21,6 +21,19 @@ namespace Hackathon2.View
         public FightArena()
         {
             InitializeComponent();
+            Character Joueur1 = ApiRequest.GetCharacter(58);
+            Joueur1.Init();
+            Character Joueur2 = ApiRequest.GetCharacter(97);
+            Joueur2.Init();
+
+            Fight fight = new Fight(Joueur1, Joueur2);
+            fight.Fighting();
         }
+
+        public static  void GetActionJoueur1(Character character)
+        {
+
+        }
+
     }
 }

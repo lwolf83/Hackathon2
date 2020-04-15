@@ -17,11 +17,10 @@ namespace Hackathon2
         public Connections connections { get; set; }
         public Image image { get; set; }
 
-        public Character()
+        public void Init()
         {
-            PV = powerstats.Durability * powerstats.Combat;
+            this.PV = this.powerstats.Durability*this.powerstats.Combat;
         }
-
 
         public int PhysicalAttack(Character defender)
         {

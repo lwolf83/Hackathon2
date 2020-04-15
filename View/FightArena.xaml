@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Hackathon2.View.FightArena"
+﻿<UserControl x:Class="Hackathon2.FightArena"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,23 @@
              xmlns:local="clr-namespace:Hackathon2.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <StackPanel>
+        <Grid>
+            <Label x:Name="AQuiLeTour"/>
+        </Grid>
+        <Grid x:Name="JOne">
+            <StackPanel>
+                <Label x:Name="PV1" Height="50"></Label>
+            <Button x:Name="J1P" Content="Attaque physique"/>
+            <Button x:Name="J1I" Content="Attaque intellectuelle"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="JTwo">
+            <StackPanel>
+             <Label x:Name="PV2" Height="50"></Label>
+            <Button x:Name="J2P"  Content="Attaque physique"/>
+            <Button x:Name="J2I"  Content="Attaque intellectuelle"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </UserControl>
