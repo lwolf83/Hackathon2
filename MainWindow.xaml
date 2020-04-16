@@ -4,9 +4,73 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackathon2"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"             
+        Background="#FF536093"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <Style TargetType="materialDesign:Chip">
+            <Setter Property="Height" Value="25" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <local:CharacterPicture x:Name="CharacterPicture"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.9*" />
+            <ColumnDefinition Width="1.2*" />
+            <ColumnDefinition Width="1.9*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="3.5*" />
+            <RowDefinition Height="0.8*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0, 20, 0, 0" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="Navy">
+            <Label VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="AntiqueWhite" FontWeight="Heavy" FontFamily="Algerian"  FontSize="40" >SUPER HEROES BATTLE</Label>
+        </StackPanel>
+
+        <Button Grid.Column="1" Grid.Row="1" Background="Navy"
+              Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+              ToolTip="Play game">
+            <materialDesign:PackIcon
+                Kind="Play"
+                Height="55"
+                Width="55" />
+        </Button>
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+            <Button Style="{DynamicResource MaterialDesignRaisedButton}"
+                materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                Background="Navy" Width="100" Margin="30,0,0,0">Random</Button>
+            <Button Style="{DynamicResource MaterialDesignRaisedButton}"
+                materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                Background="Navy" Width="100" Margin="30,0,0,0">Select</Button>
+        </StackPanel>
+
+        <ListBox x:Name="PersonList" Margin="20,0,0,0" Grid.Column="0" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Height="60" Width="200">
+                        <Image Source="{Binding Image}"/>
+                        <TextBlock Text="{Binding Name}" Margin="20,0,0,0" FontSize= "25" VerticalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox x:Name="PersonList1" Margin="20,0,0,0" Grid.Column="2" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <materialDesign:Chip Content="{Binding Name}" Height="60" Width="200">
+                        <materialDesign:Chip.Icon >
+                            <Image Source="{Binding Image}" />
+                        </materialDesign:Chip.Icon>
+                    </materialDesign:Chip>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
 </Window>
+

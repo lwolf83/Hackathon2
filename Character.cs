@@ -19,7 +19,7 @@ namespace Hackathon2
 
         public Character()
         {
-            PV = powerstats.Durability * powerstats.Combat;
+            //PV = powerstats.Durability * powerstats.Combat;
         }
 
 
