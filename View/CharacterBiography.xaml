@@ -1,16 +1,16 @@
-﻿<Window x:Class="Hackathon2.CharacterBiography"
+﻿<Page x:Class="Hackathon2.CharacterBiography"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hackathon2"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"             
-             Background="#FF536093"
+             Background="#606060"
              FontFamily="/Ressources/#Shrikhand"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
-    
-    <Grid Margin="20,0,20,0">
+    <Border BorderBrush="#303030" BorderThickness="5">   
+    <Grid Margin="20,10,20,10">
         <Grid.Resources>
             <Style x:Key="TitleStyle">
                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -64,35 +64,39 @@
 
         </Grid>
         <Label Content="Statistics : " Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2" Style="{StaticResource TitleStyle}"/>
-
-        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="150"  Margin="0,0,70,0">
-            <StackPanel Margin="0,0,0,10">
-                <TextBlock Text="Strength" Style="{StaticResource TextStyle}"/>
-                <ProgressBar Value="{Binding Powerstats.Strength}" Height="10" ></ProgressBar>
-            </StackPanel>
-            <StackPanel Margin="0,0,0,10">
-                <TextBlock Text="Combat" Style="{StaticResource TextStyle}"/>
-                <ProgressBar Value="{Binding Powerstats.Combat}" Height="10"></ProgressBar>
-            </StackPanel>
-            <StackPanel Margin="0,0,0,10">
-                <TextBlock Text="Intelligence" Style="{StaticResource TextStyle}"/>
-                <ProgressBar Value="{Binding Powerstats.Intelligence}" Height="10"></ProgressBar>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="150" Margin="70,0,0,0">
-            <StackPanel Margin="0,0,0,10">
-                <TextBlock Text="Speed" Style="{StaticResource TextStyle}"/>
-                <ProgressBar Value="{Binding Powerstats.Speed}" Height="10"></ProgressBar>
-            </StackPanel>
-            <StackPanel Margin="0,0,0,10">
-                <TextBlock Text="Durability" Style="{StaticResource TextStyle}"/>
-                <ProgressBar Value="{Binding Powerstats.Durability}" Height="10"></ProgressBar>
-            </StackPanel>
-            <StackPanel Margin="0,0,0,10">
-                <TextBlock Text="Power" Style="{StaticResource TextStyle}"/>
-                <ProgressBar Value="{Binding Powerstats.Power}" Height="10"></ProgressBar>
-            </StackPanel>
-        </StackPanel>
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="150"  Margin="0,0,70,0">
+                <StackPanel >
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Strength" Style="{StaticResource TextStyle}"/>
+                        <ProgressBar Value="{Binding Powerstats.Strength}" Height="10" ></ProgressBar>
+                    </StackPanel>
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Combat" Style="{StaticResource TextStyle}"/>
+                        <ProgressBar Value="{Binding Powerstats.Combat}" Height="10"></ProgressBar>
+                    </StackPanel>
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Intelligence" Style="{StaticResource TextStyle}"/>
+                        <ProgressBar Value="{Binding Powerstats.Intelligence}" Height="10"></ProgressBar>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="150" Margin="70,0,0,0">
+                <StackPanel>
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Speed" Style="{StaticResource TextStyle}"/>
+                        <ProgressBar Value="{Binding Powerstats.Speed}" Height="10"></ProgressBar>
+                    </StackPanel>
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Durability" Style="{StaticResource TextStyle}"/>
+                        <ProgressBar Value="{Binding Powerstats.Durability}" Height="10"></ProgressBar>
+                    </StackPanel>
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Power" Style="{StaticResource TextStyle}"/>
+                        <ProgressBar Value="{Binding Powerstats.Power}" Height="10"></ProgressBar>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        
         </Grid>
-
-</Window>
+    </Border>
+</Page>

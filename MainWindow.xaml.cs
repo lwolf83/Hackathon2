@@ -32,6 +32,7 @@ namespace Hackathon2
 
             PersonList.ItemsSource = GoodCharacters;
             PersonList1.ItemsSource = BadCharacters;
+            Biography_Frame.Visibility = Visibility.Collapsed;
         }
 
         public void GetCharacters()
@@ -53,6 +54,18 @@ namespace Hackathon2
                     BadCharacters.Add(character);
                 }
             }
+        }
+
+        private void OnMouseEnter_Info(object sender, MouseEventArgs e)
+        {
+            Biography_Frame.Visibility = Visibility.Visible;
+            Character currentCharacter = ApiRequest.GetCharacter(70);
+            Biography_Frame.Content = new CharacterBiography(currentCharacter);
+        }
+
+        private void OnMouseLeave_Info(object sender, MouseEventArgs e)
+        {
+            Biography_Frame.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -16,11 +16,12 @@ namespace Hackathon2
     /// <summary>
     /// Logique d'interaction pour CharacterBiography.xaml
     /// </summary>
-    public partial class CharacterBiography : Window
+    public partial class CharacterBiography : Page
     {
         public CharacterBiography(Character currentCharacter)
         {
             InitializeComponent();
+            //Character currentCharacter = ApiRequest.GetCharacter(70)
             DataContext = currentCharacter;
         }
     }
