@@ -31,7 +31,7 @@ namespace Hackathon2
             Joueur2.Init();
 
             Fight = new Fight(Joueur1, Joueur2);
-            Fight.Fighting();
+
         }
 
         public static  void GetActionJoueur1(Character character)
@@ -41,34 +41,76 @@ namespace Hackathon2
 
         private void J1_AttPhys_Btn(object sender, RoutedEventArgs e)
         {
-            UserAttackChoice attackChoice = new UserAttackChoice();
-            attackChoice.attackingPlayer = Joueur1;
-            attackChoice.playerAttackType = "Physical Attack";
-            Fight.SetUserAttackChoice(attackChoice);
+            Attack(Joueur1, Joueur2, "Physical Attack");
         }
+
+
 
         private void J1_AttInt_Btn(object sender, RoutedEventArgs e)
         {
-            UserAttackChoice attackChoice = new UserAttackChoice();
-            attackChoice.attackingPlayer = Joueur1;
-            attackChoice.playerAttackType = "Intellectual Attack";
-            Fight.SetUserAttackChoice(attackChoice);
+            Attack(Joueur1, Joueur2, "Intellectual Attack");
+
         }
 
         private void J2_AttPhys_Btn(object sender, RoutedEventArgs e)
         {
-            UserAttackChoice attackChoice = new UserAttackChoice();
-            attackChoice.attackingPlayer = Joueur2;
-            attackChoice.playerAttackType = "Physical Attack";
-            Fight.SetUserAttackChoice(attackChoice);
+            Attack(Joueur2, Joueur1, "Physical Attack");
+
         }
 
         private void J2_AttInt_Btn(object sender, RoutedEventArgs e)
         {
+            Attack(Joueur2, Joueur1, "Intellectual Attack");
+
+        }
+
+        private void Attack(Character player1, Character player2, string attacjType)
+        {
             UserAttackChoice attackChoice = new UserAttackChoice();
-            attackChoice.attackingPlayer = Joueur2;
-            attackChoice.playerAttackType = "Intellectual Attack";
+            attackChoice.attackingPlayer = player1;
+            attackChoice.defenderPlayer = player2;
+            attackChoice.playerAttackType = attacjType;
             Fight.SetUserAttackChoice(attackChoice);
+            AQuiLeTour.Content = "J1 = " + player1.PV + " J2 = " + player2.PV;
+            if (Fight.Winner != null)
+            {
+                DisplayWinner();
+            }
+            if(Fight.isTeamOnePlaying)
+            {
+                EnabledPlayerOne();
+                DisabledPlayerTwo();
+            }
+            else
+            {
+                EnabledPlayerTwo();
+                DisabledPlayerOne();
+            }
+        }
+
+        private void DisplayWinner()
+        {
+           
+        }
+
+        private void DisabledPlayerOne()
+        {
+          
+        }
+
+        private void EnabledPlayerTwo()
+        {
+          
+        }
+
+        private void DisabledPlayerTwo()
+        {
+           
+        }
+
+        private void EnabledPlayerOne()
+        {
+          
         }
     }
 }

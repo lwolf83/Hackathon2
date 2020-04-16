@@ -10,33 +10,24 @@ namespace Hackathon2
         public Character Player2 { get; set; }
         public Character Winner { get; set; }
         private UserAttackChoice _UserAttackChoice = new UserAttackChoice();
+        public bool isTeamOnePlaying { get; set; }
 
         public Fight(Character player1, Character player2)
         {
             Player1 = player1;
             Player2 = player2;
+            isTeamOnePlaying = GetFirstPlayer();
         }
-        public Character GetFirstPlayer()
+
+        public bool GetFirstPlayer()
         {
             if(Player1.powerstats.Speed < Player2.powerstats.Speed)
             {
-                return Player2;
+                return false;
             }
             else
             {
-                return Player1;
-            }
-        }
-
-        public Character GetSecondPlayer()
-        {
-            if (Player1.powerstats.Speed < Player2.powerstats.Speed)
-            {
-                return Player1;
-            }
-            else
-            {
-                return Player2;
+                return true;
             }
         }
 
@@ -57,16 +48,16 @@ namespace Hackathon2
             return numberAttack;
         }
 
-        public Character Fighting()
+       /* public Character Fighting()
         {
             Character attacker = GetFirstPlayer();
             Character defender = GetSecondPlayer();
             
             while (attacker.PV > 0 && defender.PV > 0)
             {
-                /*while(_UserAttackChoice.attackingPlayer != attacker)
+                while(_UserAttackChoice.attackingPlayer != attacker)
                 {
-                }*/
+                }
                 if (_UserAttackChoice.attackingPlayer == attacker)
                 {
                     Attack(attacker, defender);
@@ -77,7 +68,7 @@ namespace Hackathon2
                 defender = tempCharacter;
             }
             return Winner;
-        }
+        }*/
 
         public void Attack(Character attacker, Character defender)
         {
@@ -105,6 +96,15 @@ namespace Hackathon2
         public void SetUserAttackChoice(UserAttackChoice userAttackChoice)
         {
             _UserAttackChoice = userAttackChoice;
+            Attack(userAttackChoice.attackingPlayer, userAttackChoice.defenderPlayer);
+            if(userAttackChoice.IsDefenderDead())
+            { 
+                Winner = userAttackChoice.attackingPlayer;
+            }
+            else
+            {
+                isTeamOnePlaying = !isTeamOnePlaying;
+            }
         }
 
         /*public string UserAttackChoice(UserAttackChoice userAttack)
