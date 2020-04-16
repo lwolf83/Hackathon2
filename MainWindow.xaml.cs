@@ -42,7 +42,7 @@ namespace Hackathon2
             while (GoodCharacters.Count < 9 || BadCharacters.Count < 9)
             {
                 List<Thread> getCharactersList = new List<Thread>();
-                for (int i = 0; i < 13; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     Thread getCharacter = new Thread(new ThreadStart(GetCharacters));
                     getCharactersList.Add(getCharacter);
@@ -86,47 +86,16 @@ namespace Hackathon2
             }
         }
 
-
-        private void PersonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Button_Goodteam.Content = "Select team";
-
-            if (PersonList.SelectedItems.Count < 5)
-            {
-                GoodSelectionBadge.Badge = PersonList.SelectedItems.Count;
-            }
-            else
-            {
-                PersonList.SelectedItems.RemoveAt(4); 
-            }
-        }
-
-        private void PersonList1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            Button_Badteam.Content = "Select team";
-
-            if (PersonList1.SelectedItems.Count < 5)
-            {
-                BadSelectionBadge.Badge = PersonList1.SelectedItems.Count;
-            }
-            else
-            {
-                PersonList1.SelectedItems.RemoveAt(4);
-            }            
-
-        }
-
         private void Button_ClickGoodteam(object sender, RoutedEventArgs e)
         {
-            GoodTeam = PersonList.SelectedItems.Cast<Character>().ToList();
+            GoodTeam = GoodCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
             Button_Goodteam.Content = "Selected";
             GoodTeam = GoodCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
         }
 
         private void Button_ClickBadteam(object sender, RoutedEventArgs e)
         {
-            BadTeam = PersonList1.SelectedItems.Cast<Character>().ToList();
+            BadTeam = BadCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
             Button_Badteam.Content = "Selected";
             BadTeam = BadCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
         }
@@ -144,14 +113,6 @@ namespace Hackathon2
             }
         }
 
-        private void GoodCharacter_MouseEnter(object sender, MouseEventArgs e)
-        {
-            var test = sender;
-        }
 
-        private void GoodCharacter_MouseLeave(object sender, MouseEventArgs e)
-        {
-
-        }
     }
 }
