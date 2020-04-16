@@ -42,12 +42,12 @@ namespace Hackathon2
             Team2.ForEach(x => x.Init());
 
             SelectedCharacterT1 = Team1[0];
-            Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.image.Url));
-            Player1_Name.Content = SelectedCharacterT1.name;
+            Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.Image.Url));
+            Player1_Name.Content = SelectedCharacterT1.Name;
 
             SelectedCharacterT2 = Team2[0];
-            Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.image.Url));
-            Player2_Name.Content = SelectedCharacterT2.name;
+            Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.Image.Url));
+            Player2_Name.Content = SelectedCharacterT2.Name;
             PV1.Content = SelectedCharacterT1.PV;
             PV2.Content = SelectedCharacterT2.PV;
 
@@ -55,7 +55,7 @@ namespace Hackathon2
             Team2_ListBox.ItemsSource = Team2;
 
             Fight = new Fight(Team1, Team2);
-            AQuiLeTour.Content = SelectedCharacterT1.name + " vs "  + SelectedCharacterT2.name;
+            AQuiLeTour.Content = SelectedCharacterT1.Name + " vs "  + SelectedCharacterT2.Name;
         }
 
         /*public static  void GetActionJoueur1(Character character)
@@ -122,7 +122,7 @@ namespace Hackathon2
 
         private void DisplayWinner()
         {
-            WinnerMessage.Content = Fight.WinnerTeam.Select(x => x.name).FirstOrDefault();
+            WinnerMessage.Content = Fight.WinnerTeam.Select(x => x.Name).FirstOrDefault();
         }
 
         private void DisabledPlayerOne()
@@ -154,20 +154,20 @@ namespace Hackathon2
         {
             ListBoxItem selectedItem = ((sender as ListBox).SelectedItem as ListBoxItem);
             SelectedCharacterT1 = (Character)Team1_ListBox.SelectedItem;
-            Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.image.Url));
-            Player1_Name.Content = SelectedCharacterT1.name;
+            Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.Image.Url));
+            Player1_Name.Content = SelectedCharacterT1.Name;
             PV1.Content = SelectedCharacterT1.PV;
-            AQuiLeTour.Content = SelectedCharacterT1.name + " vs " + SelectedCharacterT2.name;
+            AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
         }
 
         private void Team2_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBoxItem selectedItem = ((sender as ListBox).SelectedItem as ListBoxItem);
             SelectedCharacterT2 = (Character)Team2_ListBox.SelectedItem;
-            Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.image.Url));
-            Player2_Name.Content = SelectedCharacterT2.name;
+            Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.Image.Url));
+            Player2_Name.Content = SelectedCharacterT2.Name;
             PV2.Content = SelectedCharacterT2.PV;
-            AQuiLeTour.Content = SelectedCharacterT1.name + " vs " + SelectedCharacterT2.name;
+            AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
         }
     }
     

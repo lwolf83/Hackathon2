@@ -76,48 +76,48 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height="120" >
-                        <Image Source="{Binding image.Url}"/>
-                        <TextBlock Text="{Binding name}" Margin="5,0,0,0" FontSize= "20" FontWeight="Heavy" VerticalAlignment="Center" />
+                        <Image Source="{Binding Image.Url}"/>
+                        <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize= "20" FontWeight="Heavy" VerticalAlignment="Center" />
                         <StackPanel Orientation="Vertical" Margin="10,0,0,0">
                             <TextBlock Margin="0,5,0,0" FontSize= "12" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Intelligence: {0}">
-                                        <Binding Path="powerstats.Intelligence"/>
+                                        <Binding Path="Powerstats.Intelligence"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "12" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Strength: {0}">
-                                        <Binding Path="powerstats.Strength"/>
+                                        <Binding Path="Powerstats.Strength"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "12" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Speed: {0}">
-                                        <Binding Path="powerstats.Speed"/>
+                                        <Binding Path="Powerstats.Speed"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "12" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Durability: {0}">
-                                        <Binding Path="powerstats.Durability"/>
+                                        <Binding Path="Powerstats.Durability"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "12" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Power: {0}">
-                                        <Binding Path="powerstats.Power"/>
+                                        <Binding Path="Powerstats.Power"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "12" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Combat: {0}">
-                                        <Binding Path="powerstats.Combat"/>
+                                        <Binding Path="Powerstats.Combat"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -130,48 +130,48 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height="120" >
-                        <Image Source="{Binding image.Url}"/>
-                        <TextBlock Text="{Binding name}" Margin="5,0,0,0" FontSize= "20" FontWeight="Heavy" VerticalAlignment="Center" />
+                        <Image Source="{Binding Image.Url}"/>
+                        <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize= "20" FontWeight="Heavy" VerticalAlignment="Center" />
                         <StackPanel Orientation="Vertical" Margin="10,0,0,0">
                             <TextBlock Margin="0,5,0,0" FontSize= "10" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Intelligence: {0}">
-                                        <Binding Path="powerstats.Intelligence"/>
+                                        <Binding Path="Powerstats.Intelligence"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "10" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Strength: {0}">
-                                        <Binding Path="powerstats.Strength"/>
+                                        <Binding Path="Powerstats.Strength"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "10" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Speed: {0}">
-                                        <Binding Path="powerstats.Speed"/>
+                                        <Binding Path="Powerstats.Speed"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "10" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Durability: {0}">
-                                        <Binding Path="powerstats.Durability"/>
+                                        <Binding Path="Powerstats.Durability"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "10" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Power: {0}">
-                                        <Binding Path="powerstats.Power"/>
+                                        <Binding Path="Powerstats.Power"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Margin="0,5,0,0" FontSize= "10" >
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Combat: {0}">
-                                        <Binding Path="powerstats.Combat"/>
+                                        <Binding Path="Powerstats.Combat"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
