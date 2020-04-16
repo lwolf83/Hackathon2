@@ -16,10 +16,12 @@ namespace Hackathon2
         public Work work { get; set; }
         public Connections connections { get; set; }
         public Image image { get; set; }
+        public int PVmax { get; set; }
 
         public void Init()
         {
             PV = powerstats.Durability * powerstats.Combat;
+            PVmax = powerstats.Durability * powerstats.Combat;
         }
 
         public int PhysicalAttack(Character defender)
