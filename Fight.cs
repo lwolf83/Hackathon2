@@ -23,9 +23,9 @@ namespace Hackathon2
         public bool GetFirstPlayer()
         {
             int speedSumTeam1 = 0;
-            Team1.ForEach(x => speedSumTeam1 += x.powerstats.Speed + speedSumTeam1);
+            Team1.ForEach(x => speedSumTeam1 += x.Powerstats.Speed + speedSumTeam1);
             int speedSumTeam2 = 0;
-            Team1.ForEach(x => speedSumTeam2 += x.powerstats.Speed + speedSumTeam2);
+            Team1.ForEach(x => speedSumTeam2 += x.Powerstats.Speed + speedSumTeam2);
 
             if (speedSumTeam1 < speedSumTeam2)
             {
@@ -69,8 +69,8 @@ namespace Hackathon2
 
         public int GetNumberOfAttackPerTurn(Character attacker, Character defender)
         {
-            int attackerPoints = attacker.powerstats.Speed * (attacker.powerstats.Intelligence + attacker.powerstats.Combat);
-            int defenderPoints = defender.powerstats.Speed * (defender.powerstats.Intelligence + defender.powerstats.Combat);
+            int attackerPoints = attacker.Powerstats.Speed * (attacker.Powerstats.Intelligence + attacker.Powerstats.Combat);
+            int defenderPoints = defender.Powerstats.Speed * (defender.Powerstats.Intelligence + defender.Powerstats.Combat);
             int numberAttack = Convert.ToInt32(Math.Round((double)attackerPoints / defenderPoints));
 
             if (numberAttack > 5)
