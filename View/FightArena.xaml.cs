@@ -83,6 +83,7 @@ namespace Hackathon2
             Fight.SetUserAttackChoice(attackChoice);
             
 
+
             //AQuiLeTour.Content = "J1 = " + player1.PV + " J2 = " + player2.PV;
             if (Fight.Winner != null)
             {
