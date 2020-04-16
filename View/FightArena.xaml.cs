@@ -26,19 +26,18 @@ namespace Hackathon2
         public Character SelectedCharacterT2 { get; set; }
 
 
-        public FightArena()
+        public FightArena(List<Character> team1, List<Character> team2)
         {
-            //public FightArena(List<Character> team1, List<Character> team2)
             InitializeComponent();
-            //Team1 = team1;
-            //Team2 = team2;
+            Team1 = team1;
+            Team2 = team2;
 
-            Team1.Add(ApiRequest.GetCharacter(58));
-            Team1.Add(ApiRequest.GetCharacter(303));
+            //Team1.Add(ApiRequest.GetCharacter(58));
+            //Team1.Add(ApiRequest.GetCharacter(303));
             Team1.ForEach(x => x.Init());
 
-            Team2.Add(ApiRequest.GetCharacter(69));
-            Team2.Add(ApiRequest.GetCharacter(275));
+            //Team2.Add(ApiRequest.GetCharacter(69));
+            //Team2.Add(ApiRequest.GetCharacter(275));
 
             Team2.ForEach(x => x.Init());
 
@@ -54,7 +53,6 @@ namespace Hackathon2
 
             Team1_ListBox.ItemsSource = Team1;
             Team2_ListBox.ItemsSource = Team2;
-
 
             Fight = new Fight(Team1, Team2);
             AQuiLeTour.Content = SelectedCharacterT1.name + " vs "  + SelectedCharacterT2.name;
@@ -129,12 +127,14 @@ namespace Hackathon2
 
         private void DisabledPlayerOne()
         {
-          
+            J1P.IsEnabled = false;
+            J1I.IsEnabled = false;
         }
 
         private void EnabledPlayerTwo()
         {
-          
+            J2P.IsEnabled = true;
+            J2I.IsEnabled = true;
         }
 
         private void DisabledPlayerTwo()
@@ -146,7 +146,8 @@ namespace Hackathon2
 
         private void EnabledPlayerOne()
         {
-          
+            J1P.IsEnabled = true;
+            J1I.IsEnabled = true;
         }
 
         private void Team1_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
