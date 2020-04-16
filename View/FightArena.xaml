@@ -6,23 +6,44 @@
              xmlns:local="clr-namespace:Hackathon2.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Grid>
-            <Label x:Name="AQuiLeTour"/>
-        </Grid>
-        <Grid x:Name="JOne">
-            <StackPanel>
-                <Label x:Name="PV1" Height="50"></Label>
-            <Button x:Name="J1P" Content="Attaque physique" Click="J1_AttPhys_Btn"/>
-                <Button x:Name="J1I" Content="Attaque intellectuelle" Click="J1_AttInt_Btn"/>
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="JTwo">
-            <StackPanel>
-             <Label x:Name="PV2" Height="50"></Label>
-                <Button x:Name="J2P"  Content="Attaque physique" Click="J2_AttPhys_Btn"/>
-                <Button x:Name="J2I"  Content="Attaque intellectuelle" Click="J2_AttInt_Btn"/>
-            </StackPanel>
-        </Grid>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="109*"/>
+            <RowDefinition Height="104*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1">
+            <Grid >
+                <Label x:Name="AQuiLeTour" HorizontalAlignment="Center" Foreground="White" Background="#FF070621" FontFamily="Impact" FontSize="20" />
+            </Grid>
+        </StackPanel>
+        <Image x:Name="Player1_Image" Stretch="Uniform" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,266,0"></Image>
+        <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,266,0">
+            <Grid x:Name="JOne">
+                <StackPanel>
+                    <Label x:Name="Player1_Name" Height="50" Width="100"/>
+                    <Label x:Name="PV1" Height="50" Width="100"/>
+                    <Button x:Name="J1P" Content="Attaque physique" Click="J1_AttPhys_Btn" Background="#FF081A3A" Foreground="White" Width="140" Height="30" Margin="0,0,0,10" FontFamily="Impact" FontSize="14"/>
+                    <Button x:Name="J1I" Content="Attaque intellectuelle" Click="J1_AttInt_Btn" Background="#FF081A3A" Foreground="White" Width="140" Height="30" Margin="0,0,0,10" FontFamily="Impact" FontSize="14"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <Image x:Name="Player2_Image" Stretch="Uniform" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Margin="266,0,0,0"></Image>
+        <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="266,0,0,0">
+            <Grid x:Name="JTwo">
+                <StackPanel>
+                    <Label x:Name="Player2_Name" Height="50" Width="100"/>
+                    <Label x:Name="PV2" Height="50" Width="100"></Label>
+                    <Button x:Name="J2P" Content="Attaque physique" Click="J2_AttPhys_Btn" Background="#FF081A3A" Width="140" Height="30" FontFamily="Impact" Foreground="White" FontSize="14" FontWeight="Normal" Margin="0,0,0,10"/>
+                    <Button x:Name="J2I" Content="Attaque intellectuelle" Click="J2_AttInt_Btn" Background="#FF081A3A" Foreground="White" FontFamily="Impact" FontSize="14" Width="140" Height="30"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
 </UserControl>
