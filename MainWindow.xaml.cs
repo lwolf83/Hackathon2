@@ -26,8 +26,13 @@ namespace Hackathon2
 
         public List<Character> GoodCharacters { get; set; } = new List<Character>();
         public List<Character> BadCharacters { get; set; } = new List<Character>();
+
         private Mutex _mut = new Mutex();
         private int cpt = 0;
+
+        public List<Character> GoodTeam { get; set; } = new List<Character>();
+        public List<Character> BadTeam { get; set; } = new List<Character>();
+
 
         public MainWindow()
         {
@@ -46,8 +51,8 @@ namespace Hackathon2
                 getCharactersList.ForEach(t => t.Join());
             }
             
-            goodCharacters.PersonList.ItemsSource = GoodCharacters;
-            badCharacters.PersonList.ItemsSource = BadCharacters;
+            PersonList.ItemsSource = GoodCharacters;
+            PersonList1.ItemsSource = BadCharacters;
 
         }
 
@@ -79,6 +84,54 @@ namespace Hackathon2
                     }
                 }
             }
+        }
+
+
+        private void PersonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GoodSelectionBadge.Badge = PersonList.SelectedItems.Count;
+        }
+
+        private void PersonList1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BadSelectionBadge.Badge = PersonList1.SelectedItems.Count;
+        }
+
+        private void Button_ClickGoodteam(object sender, RoutedEventArgs e)
+        {
+            GoodTeam = PersonList.SelectedItems.Cast<Character>().ToList();
+        }
+
+        private void Button_ClickBadteam(object sender, RoutedEventArgs e)
+        {
+            BadTeam = PersonList1.SelectedItems.Cast<Character>().ToList();
+        }
+
+        private void ButtonPlay_Click(object sender, RoutedEventArgs e)
+        {
+            FightArena arena = new FightArena(GoodTeam, BadTeam);
+            this.Content = arena;
+        }
+
+        private void OnMouseEnter_Info(object sender, MouseEventArgs e)
+        {
+            Button currentButton = (Button)sender;
+
+            /*Application curApp = Application.Current;
+            Window mainWindow = curApp.MainWindow;
+            Frame Biography_Frame = (Frame)mainWindow.FindName("Biography_Frame");*/
+            Biography_Frame.Visibility = Visibility.Visible;
+
+            Character currentCharacter = (Character)currentButton.DataContext;
+            Biography_Frame.Content = new CharacterBiography(currentCharacter);
+        }
+
+        private void OnMouseLeave_Info(object sender, MouseEventArgs e)
+        {
+           /* Application curApp = Application.Current;
+            Window mainWindow = curApp.MainWindow;
+            Frame Biography_Frame = (Frame)mainWindow.FindName("Biography_Frame");*/
+            Biography_Frame.Visibility = Visibility.Collapsed;
         }
 
     }

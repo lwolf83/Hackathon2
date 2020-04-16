@@ -22,7 +22,7 @@ namespace Hackathon2
         public Character SelectedCharacterT1 { get; set; }
         public Character SelectedCharacterT2 { get; set; }
 
-        public FightArena()
+        public FightArena(List<Character> Team1, List<Character> Team2)
         {
             //List<Character> team1, List<Character> team2
             InitializeComponent();
