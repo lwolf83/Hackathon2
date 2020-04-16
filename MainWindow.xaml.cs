@@ -25,6 +25,7 @@ namespace Hackathon2
         public MainWindow()
         {
             InitializeComponent();
+
             GetCharacters();
             PersonList.ItemsSource = Characters;
             PersonList1.ItemsSource = Characters;
