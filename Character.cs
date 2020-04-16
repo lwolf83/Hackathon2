@@ -19,7 +19,7 @@ namespace Hackathon2
 
         public void Init()
         {
-            this.PV = this.powerstats.Durability*this.powerstats.Combat;
+            PV = powerstats.Durability * powerstats.Combat;
         }
 
         public int PhysicalAttack(Character defender)
@@ -28,9 +28,10 @@ namespace Hackathon2
             int defense = (defender.powerstats.Combat) * (defender.powerstats.Durability) + defender.powerstats.Power;
 
             Random random = new Random();
-            int coefRandom = random.Next(1, 10);
+            int coefRandom = random.Next(1, 10)*10;
 
-            defender.PV = Convert.ToInt32(defender.PV - Math.Round((double)(attack / defense)) * coefRandom);
+            double removedPV = Math.Round(((double)attack / defense) * coefRandom);
+            defender.PV = Convert.ToInt32(defender.PV - removedPV);
 
             return defender.PV;
         }
@@ -38,15 +39,14 @@ namespace Hackathon2
         public int IntellectualAttack(Character defender)
         {
             Random random = new Random();
-            double coefRandom = random.NextDouble();
-            int coefRandom2 = random.Next(1, 5);
+            int coefRandom2 = random.Next(5, 10)*10;
 
-            if (defender.powerstats.Intelligence < ((coefRandom * 0.7) * this.powerstats.Intelligence))
+            if (defender.powerstats.Intelligence < (this.powerstats.Intelligence + (random.NextDouble() * 0.9) * this.powerstats.Intelligence))
             {
                 int attack = (this.powerstats.Strength + this.powerstats.Power) * this.powerstats.Intelligence;
                 int defense = (defender.powerstats.Intelligence) * (defender.powerstats.Durability) + defender.powerstats.Power;
 
-                int damages = Convert.ToInt32(Math.Round((double)(attack / defense)) * coefRandom);
+                int damages = Convert.ToInt32(Math.Round(((double)attack / defense)) * random.NextDouble())*random.Next(10,50);
                 defender.PV = defender.PV - damages;
 
                 List<int> powerstatsList = new List<int>();

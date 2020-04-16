@@ -1,27 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Hackathon2
 {
     public class Fight
     {
-        public Character Player1 { get; set; }
-        public Character Player2 { get; set; }
-        public Character Winner { get; set; }
+        public List<Character> Team1 { get; set; }
+        public List<Character> Team2 { get; set; }
+        public List<Character> WinnerTeam { get; set; }
         private UserAttackChoice _UserAttackChoice = new UserAttackChoice();
         public bool isTeamOnePlaying { get; set; }
 
-        public Fight(Character player1, Character player2)
+        public Fight(List<Character> team1, List<Character> team2)
         {
-            Player1 = player1;
-            Player2 = player2;
+            Team1 = team1;
+            Team2 = team2;
             isTeamOnePlaying = GetFirstPlayer();
         }
 
         public bool GetFirstPlayer()
         {
-            if(Player1.powerstats.Speed < Player2.powerstats.Speed)
+            int speedSumTeam1 = 0;
+            Team1.ForEach(x => speedSumTeam1 += x.powerstats.Speed + speedSumTeam1);
+            int speedSumTeam2 = 0;
+            Team1.ForEach(x => speedSumTeam2 += x.powerstats.Speed + speedSumTeam2);
+
+            if (speedSumTeam1 < speedSumTeam2)
             {
                 return false;
             }
@@ -31,48 +37,22 @@ namespace Hackathon2
             }
         }
 
-        public int GetNumberOfAttackPerTurn(Character attacker, Character defender)
+        public void PlayerAttacks(UserAttackChoice userAttackChoice)
         {
-            int attackerPoints = attacker.powerstats.Speed * (attacker.powerstats.Intelligence + attacker.powerstats.Combat);
-            int defenderPoints = defender.powerstats.Speed * (defender.powerstats.Intelligence + defender.powerstats.Combat);
-            int numberAttack = Convert.ToInt32(Math.Round((double)attackerPoints / defenderPoints));
-
-            if(numberAttack > 5)
+            _UserAttackChoice = userAttackChoice;
+            Attack(userAttackChoice.attackingPlayer, userAttackChoice.defenderPlayer);
+            if (userAttackChoice.IsDefenderDead())
             {
-                numberAttack = 5;
+                DefenderDies(userAttackChoice.defenderPlayer);
             }
-            else if(numberAttack < 1)
+            else
             {
-                numberAttack = 1;
+                isTeamOnePlaying = !isTeamOnePlaying;
             }
-            return numberAttack;
         }
-
-       /* public Character Fighting()
-        {
-            Character attacker = GetFirstPlayer();
-            Character defender = GetSecondPlayer();
-            
-            while (attacker.PV > 0 && defender.PV > 0)
-            {
-                while(_UserAttackChoice.attackingPlayer != attacker)
-                {
-                }
-                if (_UserAttackChoice.attackingPlayer == attacker)
-                {
-                    Attack(attacker, defender);
-                }
-
-                Character tempCharacter = attacker;
-                attacker = defender;
-                defender = tempCharacter;
-            }
-            return Winner;
-        }*/
 
         public void Attack(Character attacker, Character defender)
         {
-           
             if (_UserAttackChoice.playerAttackType == "Physical Attack")
             {
                 int numberOfAttack = GetNumberOfAttackPerTurn(attacker, defender);
@@ -85,27 +65,45 @@ namespace Hackathon2
             {
                 attacker.IntellectualAttack(defender);
             }
-
-            if (defender.PV <= 0)
-            {
-                Winner = attacker;
-            }
-            
         }
 
-        public void SetUserAttackChoice(UserAttackChoice userAttackChoice)
+        public int GetNumberOfAttackPerTurn(Character attacker, Character defender)
         {
-            _UserAttackChoice = userAttackChoice;
-            Attack(userAttackChoice.attackingPlayer, userAttackChoice.defenderPlayer);
-            if(userAttackChoice.IsDefenderDead())
-            { 
-                Winner = userAttackChoice.attackingPlayer;
-            }
-            else
+            int attackerPoints = attacker.powerstats.Speed * (attacker.powerstats.Intelligence + attacker.powerstats.Combat);
+            int defenderPoints = defender.powerstats.Speed * (defender.powerstats.Intelligence + defender.powerstats.Combat);
+            int numberAttack = Convert.ToInt32(Math.Round((double)attackerPoints / defenderPoints));
+
+            if (numberAttack > 5)
             {
-                isTeamOnePlaying = !isTeamOnePlaying;
+                numberAttack = 5;
+            }
+            else if (numberAttack < 1)
+            {
+                numberAttack = 1;
+            }
+            return numberAttack;
+        }
+
+        public void DefenderDies(Character defender)
+        {
+            if (Team1.Contains(defender))
+            {
+                Team1.Remove(defender);
+                if (Team1.Count <= 0)
+                {
+                    WinnerTeam = Team2;
+                }
+            }
+            if (Team2.Contains(defender))
+            {
+                Team2.Remove(defender);
+                if (Team2.Count <= 0)
+                {
+                    WinnerTeam = Team1;
+                }
             }
         }
+
 
         /*public string UserAttackChoice(UserAttackChoice userAttack)
         {
