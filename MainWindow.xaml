@@ -60,12 +60,10 @@
                 Width="90" />
         </Button>
 
-
-
         <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <materialDesign:Badged x:Name="GoodSelectionBadge"
                 Badge="0">
-                <Button Click="Button_ClickGoodteam" Style="{DynamicResource MaterialDesignRaisedButton}"
+                <Button x:Name="Button_Goodteam" Click="Button_ClickGoodteam" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth5" Background="Navy" Width="110">
                     Select team
                 </Button>
@@ -75,18 +73,15 @@
         <StackPanel Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <materialDesign:Badged x:Name="BadSelectionBadge"
                 Badge="0">
-                <Button Click="Button_ClickBadteam" Style="{DynamicResource MaterialDesignRaisedButton}"
+                <Button x:Name="Button_Badteam" Click="Button_ClickBadteam" Style="{DynamicResource MaterialDesignRaisedButton}"
                 materialDesign:ShadowAssist.ShadowDepth="Depth5" Background="Navy" Width="110">
                     Select team
                 </Button>
             </materialDesign:Badged>
         </StackPanel>
 
-        <local:CharacterSelector x:Name="GoodCharacter" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
-
-
-        <local:CharacterSelector x:Name="BadCharacter"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"/>
-
+        <local:CharacterSelector x:Name="GoodCharacter" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" />
+        <local:CharacterSelector x:Name="BadCharacter"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" />
 
         <Frame x:Name="Biography_Frame" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="180" Width="400" Background="DarkGray" NavigationUIVisibility="Hidden"/>
 

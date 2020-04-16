@@ -20,36 +20,32 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <ListBox Grid.Column="1" x:Name="PersonList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Multiple" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ListBox Grid.Column="1" x:Name="PersonList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Multiple" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionChanged="PersonList_SelectionChanged">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border  Background="Red">
-                        <StackPanel Orientation="Vertical" Width="90">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="0.4*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="0.4*"/>
-                                </Grid.RowDefinitions>
-                                <Image Source="{Binding Image.Url}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-                                 <Button ToolTip="Info" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" MouseEnter="OnMouseEnter_Info" MouseLeave="OnMouseLeave_Info">
-                                        <materialDesign:PackIcon
+                    <StackPanel Orientation="Vertical" Width="90">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="0.4*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding Image.Url}" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                            <Button ToolTip="Info" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" MouseEnter="OnMouseEnter_Info" MouseLeave="OnMouseLeave_Info">
+                                <materialDesign:PackIcon
                                     Kind="InfoCircleOutline"
                                     Height="25"
                                     Width="25"  Margin="-15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Button>
-                            
-                            </Grid>
-                        
+                            </Button>
+                        </Grid>
                     </StackPanel>
                     </Border>
                 </DataTemplate>

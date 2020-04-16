@@ -42,7 +42,7 @@ namespace Hackathon2
             while (GoodCharacters.Count < 9 || BadCharacters.Count < 9)
             {
                 List<Thread> getCharactersList = new List<Thread>();
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     Thread getCharacter = new Thread(new ThreadStart(GetCharacters));
                     getCharactersList.Add(getCharacter);
@@ -86,41 +86,33 @@ namespace Hackathon2
             }
         }
 
-
-        private void PersonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           // GoodSelectionBadge.Badge = PersonList.SelectedItems.Count;
-        }
-
-        private void PersonList1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           // BadSelectionBadge.Badge = PersonList1.SelectedItems.Count;
-        }
-
         private void Button_ClickGoodteam(object sender, RoutedEventArgs e)
         {
+            GoodTeam = GoodCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
+            Button_Goodteam.Content = "Selected";
             GoodTeam = GoodCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
         }
 
         private void Button_ClickBadteam(object sender, RoutedEventArgs e)
         {
             BadTeam = BadCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
+            Button_Badteam.Content = "Selected";
+            BadTeam = BadCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
         }
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
-            FightArena arena = new FightArena(GoodTeam, BadTeam);
-            this.Content = arena;
+            if(GoodTeam.Count.Equals(BadTeam.Count) && (BadTeam.Count != 0))
+            {
+                FightArena arena = new FightArena(GoodTeam, BadTeam);
+                this.Content = arena;
+            }
+            else
+            {
+                MessageBox.Show("Read Carefully Game Rules !!! \nTeams Not Null & Equals\nMax 4 Heroes Each Team");
+            }
         }
 
-        private void GoodCharacter_MouseEnter(object sender, MouseEventArgs e)
-        {
-            var test = sender;
-        }
 
-        private void GoodCharacter_MouseLeave(object sender, MouseEventArgs e)
-        {
-
-        }
     }
 }
