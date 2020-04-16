@@ -22,6 +22,10 @@ namespace Hackathon2
             StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
             string returnString = readStream.ReadToEnd();
             Character currentCharacter = JsonConvert.DeserializeObject<Character>(returnString);
+            if(!currentCharacter.Image.CheckUrlExist())
+            {
+                currentCharacter.Image.SetToDefault();
+            }
             return currentCharacter;
         }
 
