@@ -34,13 +34,16 @@ namespace Hackathon2
         public void GetCharacters()
         {
             int i = 1;
-            Character character = ApiRequest.GetCharacter(i);
+            Random gen = new Random();
+            int id = gen.Next(1, 710);
+            Character character = ApiRequest.GetCharacter(id);
 
-            while (i < 4)
+            while (i < 11)
             {
                 Characters.Add(character);
                 i++;
-                character = ApiRequest.GetCharacter(i);
+                id = gen.Next(1, 710);
+                character = ApiRequest.GetCharacter(id);
             }
         }
     }
