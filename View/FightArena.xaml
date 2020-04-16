@@ -7,12 +7,11 @@
              xmlns:local="clr-namespace:Hackathon2.View"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1000">
-    <Grid>
+    <Grid Background="#FFDAE0EA">
         <Grid.RowDefinitions>
             <RowDefinition Height="12*"/>
             <RowDefinition Height="109*"/>
             <RowDefinition Height="104*"/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,8 +20,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="2">
-            <Grid >
+        <StackPanel Grid.Column="2" >
+            <Grid Margin="0,0,0,10">
                 <Label x:Name="AQuiLeTour" HorizontalAlignment="Center" Foreground="White" Background="#FF070621" FontFamily="Impact" FontSize="20" />
             </Grid>
         </StackPanel>
@@ -31,8 +30,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding image.Url}" Height="70" Width="auto"/>
-                            <TextBlock Text="{Binding name}" Margin="5,0,0,0" FontSize= "14" VerticalAlignment="Center" />
+                            <Image Source="{Binding Image.Url}" Height="70" Width="auto"/>
+                            <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize= "14" VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -74,9 +73,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding image.Url}" Height="70" Width="auto" HorizontalAlignment="Right"/>
-
-                            <TextBlock Text="{Binding name}" Margin="5,0,0,0" FontSize= "14" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                            <Image Source="{Binding Image.Url}" Height="70" Width="auto" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize= "14" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

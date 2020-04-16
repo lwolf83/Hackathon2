@@ -14,9 +14,6 @@ using System.Linq;
 
 namespace Hackathon2
 {
-    /// <summary>
-    /// Logique d'interaction pour FightArena.xaml
-    /// </summary>
     public partial class FightArena : UserControl
     {
         public List<Character> Team1 { get; set; } = new List<Character>();
@@ -25,34 +22,29 @@ namespace Hackathon2
         public Character SelectedCharacterT1 { get; set; }
         public Character SelectedCharacterT2 { get; set; }
 
-
         public FightArena()
         {
             //List<Character> team1, List<Character> team2
             InitializeComponent();
             //Team1 = team1;
             //Team2 = team2;
-
             Team1.Add(ApiRequest.GetCharacter(69));
             Team1.Add(ApiRequest.GetCharacter(275));
             Team1.Add(ApiRequest.GetCharacter(23));
-
             Team1.ForEach(x => x.Init());
-
             Team2.Add(ApiRequest.GetCharacter(58));
             Team2.Add(ApiRequest.GetCharacter(310));
             Team2.Add(ApiRequest.GetCharacter(400));
-
-
             Team2.ForEach(x => x.Init());
 
             SelectedCharacterT1 = Team1[0];
-            Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.image.Url));
-            Player1_Name.Content = SelectedCharacterT1.name;
+            Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.Image.Url));
+            Player1_Name.Content = SelectedCharacterT1.Name;
 
             SelectedCharacterT2 = Team2[0];
-            Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.image.Url));
-            Player2_Name.Content = SelectedCharacterT2.name;
+
+            Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.Image.Url));
+            Player2_Name.Content = SelectedCharacterT2.Name;
 
             Team1_ListBox.ItemsSource = Team1;
             Team2_ListBox.ItemsSource = Team2;
@@ -66,17 +58,10 @@ namespace Hackathon2
             PvBar_Player2.Maximum = SelectedCharacterT2.PVmax;
             PvBar_Player2.Value = SelectedCharacterT2.PV;
 
-
             CurrentFight = new Fight(Team1, Team2);
             ActivatePlayingTeam();
-            AQuiLeTour.Content = SelectedCharacterT1.name + " vs "  + SelectedCharacterT2.name;
+            AQuiLeTour.Content = SelectedCharacterT1.Name + " vs "  + SelectedCharacterT2.Name;
         }
-
-        /*public static  void GetActionJoueur1(Character character)
-        {
-
-        }*/
-
 
         private void J1_AttPhys_Btn(object sender, RoutedEventArgs e)
         {
@@ -168,7 +153,7 @@ namespace Hackathon2
         private void DisplayWinner()
         {
             WinnerMessage.Content = "The Winners Team : ";
-            List<string> winnersName = CurrentFight.WinnerTeam.Select(x => x.name).ToList();
+            List<string> winnersName = CurrentFight.WinnerTeam.Select(x => x.Name).ToList();
             winnersName.ForEach(x => WinnerMessage.Content += "\n" + x + "\n");
         }
 
@@ -211,14 +196,13 @@ namespace Hackathon2
                     ListBoxItem selectedItem = ((sender as ListBox).SelectedItem as ListBoxItem);
                     SelectedCharacterT1 = (Character)Team1_ListBox.SelectedItem;
                 }
-                Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.image.Url));
-                Player1_Name.Content = SelectedCharacterT1.name;
+                Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.Image.Url));
+                Player1_Name.Content = SelectedCharacterT1.Name;
                 PV1.Content = SelectedCharacterT1.PV;
                 PvBar_Player1.Maximum = SelectedCharacterT1.PVmax;
                 PvBar_Player1.Value = SelectedCharacterT1.PV;
-                AQuiLeTour.Content = SelectedCharacterT1.name + " vs " + SelectedCharacterT2.name;
+                AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
             }
-
         }
 
         private void Team2_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -234,12 +218,12 @@ namespace Hackathon2
                     ListBoxItem selectedItem = ((sender as ListBox).SelectedItem as ListBoxItem);
                     SelectedCharacterT2 = (Character)Team2_ListBox.SelectedItem;
                 }
-                Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.image.Url));
-                Player2_Name.Content = SelectedCharacterT2.name;
+                Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.Image.Url));
+                Player2_Name.Content = SelectedCharacterT2.Name;
                 PV2.Content = SelectedCharacterT2.PV;
                 PvBar_Player2.Maximum = SelectedCharacterT2.PVmax;
                 PvBar_Player2.Value = SelectedCharacterT2.PV;
-                AQuiLeTour.Content = SelectedCharacterT1.name + " vs " + SelectedCharacterT2.name;
+                AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
                 
             }
         }
