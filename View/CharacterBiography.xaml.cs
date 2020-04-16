@@ -14,13 +14,13 @@ using System.Windows.Shapes;
 namespace Hackathon2.View
 {
     /// <summary>
-    /// Logique d'interaction pour FightArena.xaml
+    /// Logique d'interaction pour CharacterBiography.xaml
     /// </summary>
-    public partial class FightArena : UserControl
+    public partial class CharacterBiography : UserControl
     {
-        public FightArena()
+        public CharacterBiography()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }
