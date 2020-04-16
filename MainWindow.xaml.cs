@@ -20,28 +20,27 @@ namespace Hackathon2
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Character> Characters { get; set; } = new List<Character>();
+
         public MainWindow()
         {
             InitializeComponent();
-            Character test = ApiRequest.GetCharacter(58);
-            //CharacterPicture.Picture.Source = new BitmapImage(
-            //new Uri(test.image.Url, UriKind.Absolute));
-
-            List<Person> persons = new List<Person>() {
-                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"},
-                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"},
-                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"},
-                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"},
-                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"}
-            };
-            PersonList.ItemsSource = persons;
-            PersonList1.ItemsSource = persons;
+            GetCharacters();
+            PersonList.ItemsSource = Characters;
+            PersonList1.ItemsSource = Characters;
         }
-    }
 
-    public class Person
-    {
-        public string Name { get; set; }
-        public string Image { get; set; }
+        public void GetCharacters()
+        {
+            int i = 1;
+            Character character = ApiRequest.GetCharacter(i);
+
+            while (i < 4)
+            {
+                Characters.Add(character);
+                i++;
+                character = ApiRequest.GetCharacter(i);
+            }
+        }
     }
 }
