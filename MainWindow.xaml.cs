@@ -35,7 +35,7 @@ namespace Hackathon2
             int i = 1;
             Character character = ApiRequest.GetCharacter(i);
 
-            while (i < 4)
+            while (i < 7)
             {
                 Characters.Add(character);
                 i++;
