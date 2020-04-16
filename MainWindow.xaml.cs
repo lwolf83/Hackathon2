@@ -24,6 +24,8 @@ namespace Hackathon2
 
         public List<Character> GoodCharacters { get; set; } = new List<Character>();
         public List<Character> BadCharacters { get; set; } = new List<Character>();
+        public List<Character> GoodTeam { get; set; } = new List<Character>();
+        public List<Character> BadTeam { get; set; } = new List<Character>();
 
         public MainWindow()
         {
@@ -53,6 +55,32 @@ namespace Hackathon2
                     BadCharacters.Add(character);
                 }
             }
+        }
+
+        private void PersonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GoodSelectionBadge.Badge = PersonList.SelectedItems.Count;
+        }
+
+        private void PersonList1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BadSelectionBadge.Badge = PersonList1.SelectedItems.Count;
+        }
+
+        private void Button_ClickGoodteam(object sender, RoutedEventArgs e)
+        {
+            GoodTeam = PersonList.SelectedItems.Cast<Character>().ToList();
+        }
+
+        private void Button_ClickBadteam(object sender, RoutedEventArgs e)
+        {
+            BadTeam = PersonList1.SelectedItems.Cast<Character>().ToList();
+        }
+
+        private void ButtonPlay_Click(object sender, RoutedEventArgs e)
+        {
+            FightArena arena = new FightArena(GoodTeam, BadTeam);
+            this.Content = arena;
         }
     }
 }
