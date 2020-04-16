@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.ComponentModel;
 
 namespace Hackathon2
 {
@@ -24,16 +26,34 @@ namespace Hackathon2
 
         public List<Character> GoodCharacters { get; set; } = new List<Character>();
         public List<Character> BadCharacters { get; set; } = new List<Character>();
+
+        private Mutex _mut = new Mutex();
+        private int cpt = 0;
+
         public List<Character> GoodTeam { get; set; } = new List<Character>();
         public List<Character> BadTeam { get; set; } = new List<Character>();
 
+
         public MainWindow()
         {
-            GetCharacters();
             InitializeComponent();
+            Biography_Frame.Visibility = Visibility.Collapsed;
 
-            PersonList.ItemsSource = GoodCharacters;
-            PersonList1.ItemsSource = BadCharacters;
+            while (GoodCharacters.Count < 9 || BadCharacters.Count < 9)
+            {
+                List<Thread> getCharactersList = new List<Thread>();
+                for (int i = 0; i < 13; i++)
+                {
+                    Thread getCharacter = new Thread(new ThreadStart(GetCharacters));
+                    getCharactersList.Add(getCharacter);
+                    getCharacter.Start();
+                }
+                getCharactersList.ForEach(t => t.Join());
+            }
+
+            GoodCharacter.PersonList.ItemsSource = GoodCharacters;
+            BadCharacter.PersonList.ItemsSource = BadCharacters;
+
         }
 
         public void GetCharacters()
@@ -41,21 +61,31 @@ namespace Hackathon2
             Random gen = new Random();
             int id;
 
-            while (GoodCharacters.Count < 10 || BadCharacters.Count < 10)
+            if (GoodCharacters.Count < 9 || BadCharacters.Count < 9)
             {
                 id = gen.Next(1, 730);
-                Character character = ApiRequest.GetCharacter(id);
-
-                if((character.Biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 10)
-                {
-                    GoodCharacters.Add(character);
-                }
-                else if (! BadCharacters.Contains(character) && BadCharacters.Count < 10)
-                {
-                    BadCharacters.Add(character);
+                if(GoodCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0 && BadCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0)
+                { 
+                    Character character = ApiRequest.GetCharacter(id);
+                    _mut.WaitOne();
+                    cpt++;
+                    _mut.ReleaseMutex();
+                    if ((character.Biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 9)
+                    {
+                        _mut.WaitOne();
+                        GoodCharacters.Add(character);
+                        _mut.ReleaseMutex();
+                    }
+                    else if ((character.Biography.Alignment == "bad") && (! BadCharacters.Contains(character) && BadCharacters.Count < 9))
+                    {
+                        _mut.WaitOne();
+                        BadCharacters.Add(character);
+                        _mut.ReleaseMutex();
+                    }
                 }
             }
         }
+
 
         private void PersonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -73,6 +103,7 @@ namespace Hackathon2
 
         private void PersonList1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             Button_Badteam.Content = "Select team";
 
             if (PersonList1.SelectedItems.Count < 5)
@@ -83,18 +114,21 @@ namespace Hackathon2
             {
                 PersonList1.SelectedItems.RemoveAt(4);
             }            
+
         }
 
         private void Button_ClickGoodteam(object sender, RoutedEventArgs e)
         {
             GoodTeam = PersonList.SelectedItems.Cast<Character>().ToList();
             Button_Goodteam.Content = "Selected";
+            GoodTeam = GoodCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
         }
 
         private void Button_ClickBadteam(object sender, RoutedEventArgs e)
         {
             BadTeam = PersonList1.SelectedItems.Cast<Character>().ToList();
             Button_Badteam.Content = "Selected";
+            BadTeam = BadCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
         }
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
@@ -108,6 +142,16 @@ namespace Hackathon2
             {
                 MessageBox.Show("Read Carefully Game Rules !!! \nTeams Not Null & Equals\nMax 4 Heroes Each Team");
             }
+        }
+
+        private void GoodCharacter_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var test = sender;
+        }
+
+        private void GoodCharacter_MouseLeave(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
