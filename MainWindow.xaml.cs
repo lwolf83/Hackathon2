@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,27 +21,37 @@ namespace Hackathon2
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Character> Characters { get; set; } = new List<Character>();
+
+        public List<Character> GoodCharacters { get; set; } = new List<Character>();
+        public List<Character> BadCharacters { get; set; } = new List<Character>();
 
         public MainWindow()
         {
+            GetCharacters();
             InitializeComponent();
 
-            GetCharacters();
-            PersonList.ItemsSource = Characters;
-            PersonList1.ItemsSource = Characters;
+            PersonList.ItemsSource = GoodCharacters;
+            PersonList1.ItemsSource = BadCharacters;
         }
 
         public void GetCharacters()
         {
-            int i = 1;
-            Character character = ApiRequest.GetCharacter(i);
+            Random gen = new Random();
+            int id;
 
-            while (i < 4)
+            while (GoodCharacters.Count < 10 || BadCharacters.Count < 10)
             {
-                Characters.Add(character);
-                i++;
-                character = ApiRequest.GetCharacter(i);
+                id = gen.Next(1, 730);
+                Character character = ApiRequest.GetCharacter(id);
+
+                if((character.biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 10)
+                {
+                    GoodCharacters.Add(character);
+                }
+                else if (! BadCharacters.Contains(character) && BadCharacters.Count < 10)
+                {
+                    BadCharacters.Add(character);
+                }
             }
         }
     }
