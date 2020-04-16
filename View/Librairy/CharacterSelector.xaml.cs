@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Hackathon2
 {
     /// <summary>
-    /// Logique d'interaction pour SelectCharacters.xaml
+    /// Logique d'interaction pour CharacterSelector.xaml
     /// </summary>
-    public partial class SelectCharacters : UserControl
+    public partial class CharacterSelector : UserControl
     {
-        public SelectCharacters()
+        public CharacterSelector()
         {
             InitializeComponent();
         }
@@ -43,5 +43,6 @@ namespace Hackathon2
             Frame Biography_Frame = (Frame)mainWindow.FindName("Biography_Frame");
             Biography_Frame.Visibility = Visibility.Collapsed;
         }
+
     }
 }
