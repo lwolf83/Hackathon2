@@ -146,7 +146,24 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height="120" >
-                        <Image Source="{Binding Image.Url}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="0.4*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding Image.Url}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                            <Button ToolTip="Info" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" MouseEnter="OnMouseEnter_Info" MouseLeave="OnMouseLeave_Info">
+                                <materialDesign:PackIcon
+                                Kind="InfoCircleOutline"
+                                Height="25"
+                                Width="25"  Margin="-15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                        </Grid>
+                        
                         <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize= "20" FontWeight="Heavy" VerticalAlignment="Center" />
                         <StackPanel Orientation="Vertical" Margin="10,0,0,0">
                             <TextBlock Margin="0,5,0,0" FontSize= "10" >

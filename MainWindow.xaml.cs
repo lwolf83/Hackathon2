@@ -35,10 +35,10 @@ namespace Hackathon2
              PersonList.ItemsSource = GoodCharacters;
              PersonList1.ItemsSource = BadCharacters;
              Biography_Frame.Visibility = Visibility.Collapsed;*/
-            InitializeComponent();
-            //AsynchronousLoading();
+
+            AsynchronousLoading();
             //Init();
-            Task t1 = new Task(DoInit);
+            /*Task t1 = new Task(DoInit);
             Task t2 = new Task(Continue);
             t2.Start();
             t1.Start();
@@ -46,7 +46,15 @@ namespace Hackathon2
             t2.Wait();
             Task t3 = new Task(Finish);
             t3.Start();
-            t3.Wait();
+            t3.Wait();*/
+            /*this.Dispatcher.Invoke(() =>
+            {
+                GetCharacters();
+            });
+            this.Dispatcher.Invoke(() =>
+            {
+                DoInit();
+            });*/
         }
 
         private void Finish()
@@ -71,7 +79,7 @@ namespace Hackathon2
 
         public void AsynchronousLoading()
         {
-            BackgroundWorker worker = new BackgroundWorker();
+            BackgroundWorker worker = new BackgroundWorker(); // Voir tuto wpf Backgroundworker
             worker.WorkerReportsProgress = true;
             worker.DoWork += worker_GetChar;
             worker.DoWork += worker_DoInit;
@@ -157,8 +165,10 @@ namespace Hackathon2
 
         private void OnMouseEnter_Info(object sender, MouseEventArgs e)
         {
+            Button currentButton = (Button)sender;
+
             Biography_Frame.Visibility = Visibility.Visible;
-            Character currentCharacter = ApiRequest.GetCharacter(70);
+            Character currentCharacter = (Character) currentButton.DataContext;
             Biography_Frame.Content = new CharacterBiography(currentCharacter);
         }
 
