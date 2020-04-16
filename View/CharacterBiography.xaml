@@ -8,7 +8,7 @@
              Background="#606060"
              FontFamily="/Ressources/#Shrikhand"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="400">
+             d:DesignHeight="200" d:DesignWidth="500">
     <Border BorderBrush="#303030" BorderThickness="5">   
     <Grid Margin="20,10,20,10">
         <Grid.Resources>
@@ -31,17 +31,18 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0.4*"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Biography.Fullname}" FontWeight="ExtraBold" HorizontalAlignment="Center" FontSize="25"/>
 
-        <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1">
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -63,8 +64,8 @@
             </StackPanel>
 
         </Grid>
-        <Label Content="Statistics : " Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2" Style="{StaticResource TitleStyle}"/>
-            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="150"  Margin="0,0,70,0">
+        
+            <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
                 <StackPanel >
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock Text="Strength" Style="{StaticResource TextStyle}"/>
@@ -80,7 +81,7 @@
                     </StackPanel>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="150" Margin="70,0,0,0">
+            <Grid Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" >
                 <StackPanel>
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock Text="Speed" Style="{StaticResource TextStyle}"/>

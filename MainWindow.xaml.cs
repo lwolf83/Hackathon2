@@ -39,7 +39,7 @@ namespace Hackathon2
             InitializeComponent();
             Biography_Frame.Visibility = Visibility.Collapsed;
 
-            while (GoodCharacters.Count < 10 || BadCharacters.Count < 10)
+            while (GoodCharacters.Count < 9 || BadCharacters.Count < 9)
             {
                 List<Thread> getCharactersList = new List<Thread>();
                 for (int i = 0; i < 13; i++)
@@ -50,9 +50,9 @@ namespace Hackathon2
                 }
                 getCharactersList.ForEach(t => t.Join());
             }
-            
-            PersonList.ItemsSource = GoodCharacters;
-            PersonList1.ItemsSource = BadCharacters;
+
+            GoodCharacter.PersonList.ItemsSource = GoodCharacters;
+            BadCharacter.PersonList.ItemsSource = BadCharacters;
 
         }
 
@@ -61,7 +61,7 @@ namespace Hackathon2
             Random gen = new Random();
             int id;
 
-            if (GoodCharacters.Count < 10 || BadCharacters.Count < 10)
+            if (GoodCharacters.Count < 9 || BadCharacters.Count < 9)
             {
                 id = gen.Next(1, 730);
                 if(GoodCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0 && BadCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0)
@@ -70,13 +70,13 @@ namespace Hackathon2
                     _mut.WaitOne();
                     cpt++;
                     _mut.ReleaseMutex();
-                    if ((character.Biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 10)
+                    if ((character.Biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 9)
                     {
                         _mut.WaitOne();
                         GoodCharacters.Add(character);
                         _mut.ReleaseMutex();
                     }
-                    else if ((character.Biography.Alignment == "bad") && (! BadCharacters.Contains(character) && BadCharacters.Count < 10))
+                    else if ((character.Biography.Alignment == "bad") && (! BadCharacters.Contains(character) && BadCharacters.Count < 9))
                     {
                         _mut.WaitOne();
                         BadCharacters.Add(character);
@@ -89,22 +89,22 @@ namespace Hackathon2
 
         private void PersonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GoodSelectionBadge.Badge = PersonList.SelectedItems.Count;
+           // GoodSelectionBadge.Badge = PersonList.SelectedItems.Count;
         }
 
         private void PersonList1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BadSelectionBadge.Badge = PersonList1.SelectedItems.Count;
+           // BadSelectionBadge.Badge = PersonList1.SelectedItems.Count;
         }
 
         private void Button_ClickGoodteam(object sender, RoutedEventArgs e)
         {
-            GoodTeam = PersonList.SelectedItems.Cast<Character>().ToList();
+            GoodTeam = GoodCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
         }
 
         private void Button_ClickBadteam(object sender, RoutedEventArgs e)
         {
-            BadTeam = PersonList1.SelectedItems.Cast<Character>().ToList();
+            BadTeam = BadCharacter.PersonList.SelectedItems.Cast<Character>().ToList();
         }
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
@@ -113,26 +113,14 @@ namespace Hackathon2
             this.Content = arena;
         }
 
-        private void OnMouseEnter_Info(object sender, MouseEventArgs e)
+        private void GoodCharacter_MouseEnter(object sender, MouseEventArgs e)
         {
-            Button currentButton = (Button)sender;
-
-            /*Application curApp = Application.Current;
-            Window mainWindow = curApp.MainWindow;
-            Frame Biography_Frame = (Frame)mainWindow.FindName("Biography_Frame");*/
-            Biography_Frame.Visibility = Visibility.Visible;
-
-            Character currentCharacter = (Character)currentButton.DataContext;
-            Biography_Frame.Content = new CharacterBiography(currentCharacter);
+            var test = sender;
         }
 
-        private void OnMouseLeave_Info(object sender, MouseEventArgs e)
+        private void GoodCharacter_MouseLeave(object sender, MouseEventArgs e)
         {
-           /* Application curApp = Application.Current;
-            Window mainWindow = curApp.MainWindow;
-            Frame Biography_Frame = (Frame)mainWindow.FindName("Biography_Frame");*/
-            Biography_Frame.Visibility = Visibility.Collapsed;
-        }
 
+        }
     }
 }
