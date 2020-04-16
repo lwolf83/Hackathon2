@@ -28,7 +28,7 @@ namespace Hackathon2
             int defense = (defender.powerstats.Combat) * (defender.powerstats.Durability) + defender.powerstats.Power;
 
             Random random = new Random();
-            int coefRandom = random.Next(1, 10);
+            int coefRandom = random.Next(1, 10)*10;
 
             defender.PV = Convert.ToInt32(defender.PV - Math.Round((double)(attack / defense)) * coefRandom);
 
@@ -39,9 +39,9 @@ namespace Hackathon2
         {
             Random random = new Random();
             double coefRandom = random.NextDouble();
-            int coefRandom2 = random.Next(1, 5);
+            int coefRandom2 = random.Next(5, 10)*10;
 
-            if (defender.powerstats.Intelligence < ((coefRandom * 0.7) * this.powerstats.Intelligence))
+            if (defender.powerstats.Intelligence < ((coefRandom * 0.9) * this.powerstats.Intelligence))
             {
                 int attack = (this.powerstats.Strength + this.powerstats.Power) * this.powerstats.Intelligence;
                 int defense = (defender.powerstats.Intelligence) * (defender.powerstats.Durability) + defender.powerstats.Power;

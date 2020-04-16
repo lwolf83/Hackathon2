@@ -18,20 +18,21 @@ namespace Hackathon2
     /// </summary>
     public partial class FightArena : UserControl
     {
-        public Character Joueur1 { get; set; }
-        public Character Joueur2 { get; set; }
+        public List<Character> Team1 { get; set; }
+        public List<Character> Team2 { get; set; }
         public Fight Fight { get; set; }
 
         public FightArena()
         {
             InitializeComponent();
-            Joueur1 = ApiRequest.GetCharacter(58);
-            Joueur1.Init();
-            Joueur2 = ApiRequest.GetCharacter(97);
-            Joueur2.Init();
-
-            Fight = new Fight(Joueur1, Joueur2);
-
+            Team1 = new List<Character>();
+            Team1.Add(ApiRequest.GetCharacter(58));
+            Team1.ForEach(x => x.Init());
+            Team2 = new List<Character>();
+            Team2.Add(ApiRequest.GetCharacter(69));
+            Team2.ForEach(x => x.Init());
+            Fight = new Fight(Team1, Team2);
+            AQuiLeTour.Content = "J1 = " + Team1[0].PV + " J2 = " + Team2[0].PV;
         }
 
         public static  void GetActionJoueur1(Character character)
@@ -41,26 +42,34 @@ namespace Hackathon2
 
         private void J1_AttPhys_Btn(object sender, RoutedEventArgs e)
         {
-            PlayerAttack(Joueur1, Joueur2, "Physical Attack");
+            Character attacker = Team1[0];
+            Character defender = Team2[0];
+            PlayerAttack(attacker, defender, "Physical Attack");
         }
 
 
 
         private void J1_AttInt_Btn(object sender, RoutedEventArgs e)
         {
-            PlayerAttack(Joueur1, Joueur2, "Intellectual Attack");
+            Character attacker = Team1[0];
+            Character defender = Team2[0];
+            PlayerAttack(attacker, defender, "Intellectual Attack");
 
         }
 
         private void J2_AttPhys_Btn(object sender, RoutedEventArgs e)
         {
-            PlayerAttack(Joueur2, Joueur1, "Physical Attack");
+            Character attacker = Team2[0]; 
+            Character defender = Team1[0];
+            PlayerAttack(attacker, defender, "Physical Attack");
 
         }
 
         private void J2_AttInt_Btn(object sender, RoutedEventArgs e)
         {
-            PlayerAttack(Joueur2, Joueur1, "Intellectual Attack");
+            Character attacker = Team2[0];
+            Character defender = Team1[0];
+            PlayerAttack(attacker, defender, "Intellectual Attack");
 
         }
 
@@ -70,9 +79,9 @@ namespace Hackathon2
             attackChoice.attackingPlayer = player1;
             attackChoice.defenderPlayer = player2;
             attackChoice.playerAttackType = attacjType;
-            Fight.SetUserAttackChoice(attackChoice);
-            AQuiLeTour.Content = "J1 = " + player1.PV + " J2 = " + player2.PV;
-            if (Fight.Winner != null)
+            Fight.PlayerAttacks(attackChoice);
+            AQuiLeTour.Content = "J1 = " + Team1[0].PV + " J2 = " + Team2[0].PV;
+            if (Fight.WinnerTeam != null)
             {
                 DisplayWinner();
             }
