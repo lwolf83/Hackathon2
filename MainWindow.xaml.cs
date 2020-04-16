@@ -42,7 +42,7 @@ namespace Hackathon2
             while (GoodCharacters.Count < 9 || BadCharacters.Count < 9)
             {
                 List<Thread> getCharactersList = new List<Thread>();
-                for (int i = 0; i < 13; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     Thread getCharacter = new Thread(new ThreadStart(GetCharacters));
                     getCharactersList.Add(getCharacter);
