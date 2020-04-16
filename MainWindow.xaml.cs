@@ -20,12 +20,28 @@ namespace Hackathon2
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Character> Characters { get; set; } = new List<Character>();
+
         public MainWindow()
         {
             InitializeComponent();
-            Character test = ApiRequest.GetCharacter(58);
-           /* CharacterPicture.Picture.Source = new BitmapImage(
-                                                    new Uri(test.image.Url, UriKind.Absolute)); */
+
+            GetCharacters();
+            PersonList.ItemsSource = Characters;
+            PersonList1.ItemsSource = Characters;
+        }
+
+        public void GetCharacters()
+        {
+            int i = 1;
+            Character character = ApiRequest.GetCharacter(i);
+
+            while (i < 4)
+            {
+                Characters.Add(character);
+                i++;
+                character = ApiRequest.GetCharacter(i);
+            }
         }
     }
 }

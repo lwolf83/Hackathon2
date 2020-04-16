@@ -19,7 +19,7 @@ namespace Hackathon2
 
         public void Init()
         {
-            this.PV = this.powerstats.Durability*this.powerstats.Combat;
+            PV = powerstats.Durability * powerstats.Combat;
         }
 
         public int PhysicalAttack(Character defender)
