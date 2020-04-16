@@ -59,28 +59,55 @@ namespace Hackathon2
 
         private void PersonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GoodSelectionBadge.Badge = PersonList.SelectedItems.Count;
+            Button_Goodteam.Content = "Select team";
+
+            if (PersonList.SelectedItems.Count < 5)
+            {
+                GoodSelectionBadge.Badge = PersonList.SelectedItems.Count;
+            }
+            else
+            {
+                PersonList.SelectedItems.RemoveAt(4); 
+            }
         }
 
         private void PersonList1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BadSelectionBadge.Badge = PersonList1.SelectedItems.Count;
+            Button_Badteam.Content = "Select team";
+
+            if (PersonList1.SelectedItems.Count < 5)
+            {
+                BadSelectionBadge.Badge = PersonList1.SelectedItems.Count;
+            }
+            else
+            {
+                PersonList1.SelectedItems.RemoveAt(4);
+            }            
         }
 
         private void Button_ClickGoodteam(object sender, RoutedEventArgs e)
         {
             GoodTeam = PersonList.SelectedItems.Cast<Character>().ToList();
+            Button_Goodteam.Content = "Selected";
         }
 
         private void Button_ClickBadteam(object sender, RoutedEventArgs e)
         {
             BadTeam = PersonList1.SelectedItems.Cast<Character>().ToList();
+            Button_Badteam.Content = "Selected";
         }
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
-            FightArena arena = new FightArena(GoodTeam, BadTeam);
-            this.Content = arena;
+            if(GoodTeam.Count.Equals(BadTeam.Count) && (BadTeam.Count != 0))
+            {
+                FightArena arena = new FightArena(GoodTeam, BadTeam);
+                this.Content = arena;
+            }
+            else
+            {
+                MessageBox.Show("Read Carefully Game Rules !!! \nTeams Not Null & Equals\n Max 4 Heroes Each Team");
+            }
         }
     }
 }
