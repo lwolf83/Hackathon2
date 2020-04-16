@@ -46,7 +46,7 @@ namespace Hackathon2
                 id = gen.Next(1, 730);
                 Character character = ApiRequest.GetCharacter(id);
 
-                if((character.biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 10)
+                if((character.Biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 10)
                 {
                     GoodCharacters.Add(character);
                 }
