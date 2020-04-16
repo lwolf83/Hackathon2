@@ -7,6 +7,18 @@
              xmlns:local="clr-namespace:Hackathon2"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Opacity" Value="0.5" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="Opacity" Value="1.0" />
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <ListBox Grid.Column="1" x:Name="PersonList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Multiple" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ListBox.ItemsPanel>
@@ -17,25 +29,29 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical" Width="90">
-                        <Grid MouseEnter="Grid_MouseEnter">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="0.4*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="0.4*"/>
-                            </Grid.RowDefinitions>
-                            <Image Source="{Binding Image.Url}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-                            <Button ToolTip="Info" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" MouseEnter="OnMouseEnter_Info" MouseLeave="OnMouseLeave_Info">
-                                <materialDesign:PackIcon
-                                Kind="InfoCircleOutline"
-                                Height="25"
-                                Width="25"  Margin="-15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Button>
-                        </Grid>
+                    <Border  Background="Red">
+                        <StackPanel Orientation="Vertical" Width="90">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.4*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="0.4*"/>
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding Image.Url}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                                 <Button ToolTip="Info" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" MouseEnter="OnMouseEnter_Info" MouseLeave="OnMouseLeave_Info">
+                                        <materialDesign:PackIcon
+                                    Kind="InfoCircleOutline"
+                                    Height="25"
+                                    Width="25"  Margin="-15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Button>
+                            
+                            </Grid>
+                        
                     </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
