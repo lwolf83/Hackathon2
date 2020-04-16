@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.ComponentModel;
 
 namespace Hackathon2
 {
@@ -27,9 +29,106 @@ namespace Hackathon2
 
         public MainWindow()
         {
-            GetCharacters();
-            InitializeComponent();
+            /* GetCharacters();
+             InitializeComponent();
 
+             PersonList.ItemsSource = GoodCharacters;
+             PersonList1.ItemsSource = BadCharacters;
+             Biography_Frame.Visibility = Visibility.Collapsed;*/
+            InitializeComponent();
+            //AsynchronousLoading();
+            //Init();
+            Task t1 = new Task(DoInit);
+            Task t2 = new Task(Continue);
+            t2.Start();
+            t1.Start();
+            t1.Wait();
+            t2.Wait();
+            Task t3 = new Task(Finish);
+            t3.Start();
+            t3.Wait();
+        }
+
+        private void Finish()
+        {
+            PersonList.ItemsSource = GoodCharacters;
+            PersonList1.ItemsSource = BadCharacters;
+            Biography_Frame.Visibility = Visibility.Collapsed;
+        }
+
+        private void Continue()
+        {
+            GetCharacters();
+        }
+
+        private void DoInit()
+        {
+            InitializeComponent();
+            PersonList.ItemsSource = GoodCharacters;
+            PersonList1.ItemsSource = BadCharacters;
+            Biography_Frame.Visibility = Visibility.Collapsed;
+        }
+
+        public void AsynchronousLoading()
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += worker_GetChar;
+            worker.DoWork += worker_DoInit;
+            worker.ProgressChanged += worker_ProgressChanged;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            worker.RunWorkerAsync();
+        }
+
+        private void worker_GetChar(object sender, DoWorkEventArgs e)
+        {
+            GetCharacters();
+            
+            Thread.Sleep(1);
+        }
+
+        private void worker_DoInit(object sender, DoWorkEventArgs e)
+        {
+            InitializeComponent();
+            
+            Thread.Sleep(1);
+        }
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            PersonList.ItemsSource = GoodCharacters;
+            PersonList1.ItemsSource = BadCharacters;
+            Biography_Frame.Visibility = Visibility.Collapsed;
+            MessageBox.Show("Completed");
+        }
+
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            MessageBox.Show("Loading, please wait");
+        }
+
+
+        public void Init()
+        {
+            var threadInitComp = new ThreadStart(OnInitThreadStart);
+            var threadLoadChar = new ThreadStart(LoadCharacters);
+            var threads = new List<Thread>
+            {
+                new Thread(threadLoadChar),
+                new Thread(threadInitComp)
+            };
+            threads.ForEach(x => x.Start());
+            threads.ForEach(x => x.Join());
+        }
+
+        private void LoadCharacters()
+        {
+            GetCharacters();
+        }
+
+        private void OnInitThreadStart()
+        {
+            InitializeComponent();
             PersonList.ItemsSource = GoodCharacters;
             PersonList1.ItemsSource = BadCharacters;
             Biography_Frame.Visibility = Visibility.Collapsed;
