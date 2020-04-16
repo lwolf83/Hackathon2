@@ -106,7 +106,7 @@ namespace Hackathon2
             }
             else
             {
-                MessageBox.Show("Read Carefully Game Rules !!! \nTeams Not Null & Equals\n Max 4 Heroes Each Team");
+                MessageBox.Show("Read Carefully Game Rules !!! \nTeams Not Null & Equals\nMax 4 Heroes Each Team");
             }
         }
     }
