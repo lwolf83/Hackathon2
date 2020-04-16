@@ -26,120 +26,29 @@ namespace Hackathon2
 
         public List<Character> GoodCharacters { get; set; } = new List<Character>();
         public List<Character> BadCharacters { get; set; } = new List<Character>();
+        private Mutex _mut = new Mutex();
+        private int cpt = 0;
 
         public MainWindow()
         {
-            /* GetCharacters();
-             InitializeComponent();
-
-             PersonList.ItemsSource = GoodCharacters;
-             PersonList1.ItemsSource = BadCharacters;
-             Biography_Frame.Visibility = Visibility.Collapsed;*/
-
-            AsynchronousLoading();
-            //Init();
-            /*Task t1 = new Task(DoInit);
-            Task t2 = new Task(Continue);
-            t2.Start();
-            t1.Start();
-            t1.Wait();
-            t2.Wait();
-            Task t3 = new Task(Finish);
-            t3.Start();
-            t3.Wait();*/
-            /*this.Dispatcher.Invoke(() =>
-            {
-                GetCharacters();
-            });
-            this.Dispatcher.Invoke(() =>
-            {
-                DoInit();
-            });*/
-        }
-
-        private void Finish()
-        {
-            PersonList.ItemsSource = GoodCharacters;
-            PersonList1.ItemsSource = BadCharacters;
-            Biography_Frame.Visibility = Visibility.Collapsed;
-        }
-
-        private void Continue()
-        {
-            GetCharacters();
-        }
-
-        private void DoInit()
-        {
             InitializeComponent();
-            PersonList.ItemsSource = GoodCharacters;
-            PersonList1.ItemsSource = BadCharacters;
             Biography_Frame.Visibility = Visibility.Collapsed;
-        }
 
-        public void AsynchronousLoading()
-        {
-            BackgroundWorker worker = new BackgroundWorker(); // Voir tuto wpf Backgroundworker
-            worker.WorkerReportsProgress = true;
-            worker.DoWork += worker_GetChar;
-            worker.DoWork += worker_DoInit;
-            worker.ProgressChanged += worker_ProgressChanged;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            worker.RunWorkerAsync();
-        }
-
-        private void worker_GetChar(object sender, DoWorkEventArgs e)
-        {
-            GetCharacters();
+            while (GoodCharacters.Count < 10 || BadCharacters.Count < 10)
+            {
+                List<Thread> getCharactersList = new List<Thread>();
+                for (int i = 0; i < 13; i++)
+                {
+                    Thread getCharacter = new Thread(new ThreadStart(GetCharacters));
+                    getCharactersList.Add(getCharacter);
+                    getCharacter.Start();
+                }
+                getCharactersList.ForEach(t => t.Join());
+            }
             
-            Thread.Sleep(1);
-        }
+            goodCharacters.PersonList.ItemsSource = GoodCharacters;
+            badCharacters.PersonList.ItemsSource = BadCharacters;
 
-        private void worker_DoInit(object sender, DoWorkEventArgs e)
-        {
-            InitializeComponent();
-            
-            Thread.Sleep(1);
-        }
-
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            PersonList.ItemsSource = GoodCharacters;
-            PersonList1.ItemsSource = BadCharacters;
-            Biography_Frame.Visibility = Visibility.Collapsed;
-            MessageBox.Show("Completed");
-        }
-
-        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            MessageBox.Show("Loading, please wait");
-        }
-
-
-        public void Init()
-        {
-            var threadInitComp = new ThreadStart(OnInitThreadStart);
-            var threadLoadChar = new ThreadStart(LoadCharacters);
-            var threads = new List<Thread>
-            {
-                new Thread(threadLoadChar),
-                new Thread(threadInitComp)
-            };
-            threads.ForEach(x => x.Start());
-            threads.ForEach(x => x.Join());
-        }
-
-        private void LoadCharacters()
-        {
-            GetCharacters();
-        }
-
-        private void OnInitThreadStart()
-        {
-            InitializeComponent();
-            PersonList.ItemsSource = GoodCharacters;
-            PersonList1.ItemsSource = BadCharacters;
-            Biography_Frame.Visibility = Visibility.Collapsed;
         }
 
         public void GetCharacters()
@@ -147,34 +56,30 @@ namespace Hackathon2
             Random gen = new Random();
             int id;
 
-            while (GoodCharacters.Count < 10 || BadCharacters.Count < 10)
+            if (GoodCharacters.Count < 10 || BadCharacters.Count < 10)
             {
                 id = gen.Next(1, 730);
-                Character character = ApiRequest.GetCharacter(id);
-
-                if((character.Biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 10)
-                {
-                    GoodCharacters.Add(character);
-                }
-                else if (! BadCharacters.Contains(character) && BadCharacters.Count < 10)
-                {
-                    BadCharacters.Add(character);
+                if(GoodCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0 && BadCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0)
+                { 
+                    Character character = ApiRequest.GetCharacter(id);
+                    _mut.WaitOne();
+                    cpt++;
+                    _mut.ReleaseMutex();
+                    if ((character.Biography.Alignment == "good") && !GoodCharacters.Contains(character) && GoodCharacters.Count < 10)
+                    {
+                        _mut.WaitOne();
+                        GoodCharacters.Add(character);
+                        _mut.ReleaseMutex();
+                    }
+                    else if ((character.Biography.Alignment == "bad") && (! BadCharacters.Contains(character) && BadCharacters.Count < 10))
+                    {
+                        _mut.WaitOne();
+                        BadCharacters.Add(character);
+                        _mut.ReleaseMutex();
+                    }
                 }
             }
         }
 
-        private void OnMouseEnter_Info(object sender, MouseEventArgs e)
-        {
-            Button currentButton = (Button)sender;
-
-            Biography_Frame.Visibility = Visibility.Visible;
-            Character currentCharacter = (Character) currentButton.DataContext;
-            Biography_Frame.Content = new CharacterBiography(currentCharacter);
-        }
-
-        private void OnMouseLeave_Info(object sender, MouseEventArgs e)
-        {
-            Biography_Frame.Visibility = Visibility.Collapsed;
-        }
     }
 }
