@@ -20,17 +20,17 @@ namespace Hackathon2
         private string Comb { get; set; }
 
         [JsonIgnore]
-        public int Intelligence { get { return getValue(Intel); }  }
+        public int Intelligence { get { return getValue(Intel); } set { } }
         [JsonIgnore]
-        public int Strength { get { return getValue(Stren); }  }
+        public int Strength { get { return getValue(Stren); }  set { } }
         [JsonIgnore]
-        public int Speed { get { return getValue(Spee); }  }
+        public int Speed { get { return getValue(Spee); } set { } }
         [JsonIgnore]
-        public int Durability { get { return getValue(Durab); }  }
+        public int Durability { get { return getValue(Durab); } set { } }
         [JsonIgnore]
-        public int Power { get { return getValue(Pow); } }
+        public int Power { get { return getValue(Pow); } set { } }
         [JsonIgnore]
-        public int Combat { get { return getValue(Comb); } }
+        public int Combat { get { return getValue(Comb); } set { } }
 
 
         public int getValue(string value)

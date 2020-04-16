@@ -11,16 +11,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hackathon2.View
+namespace Hackathon2
 {
     /// <summary>
     /// Logique d'interaction pour CharacterBiography.xaml
     /// </summary>
-    public partial class CharacterBiography : UserControl
+    public partial class CharacterBiography : Window
     {
-        public CharacterBiography()
+        public CharacterBiography(Character currentCharacter)
         {
             InitializeComponent();
+            DataContext = currentCharacter;
         }
     }
 }
