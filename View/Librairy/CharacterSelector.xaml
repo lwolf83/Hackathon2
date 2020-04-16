@@ -47,7 +47,6 @@
                             </Button>
                         </Grid>
                     </StackPanel>
-                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
