@@ -7,12 +7,11 @@
              xmlns:local="clr-namespace:Hackathon2.View"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1000">
-    <Grid>
+    <Grid Background="#FFDAE0EA">
         <Grid.RowDefinitions>
             <RowDefinition Height="12*"/>
             <RowDefinition Height="109*"/>
             <RowDefinition Height="104*"/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,8 +20,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="2">
-            <Grid >
+        <StackPanel Grid.Column="2" >
+            <Grid Margin="0,0,0,10">
                 <Label x:Name="AQuiLeTour" HorizontalAlignment="Center" Foreground="White" Background="#FF070621" FontFamily="Impact" FontSize="20" />
             </Grid>
         </StackPanel>
@@ -31,37 +30,36 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding image.Url}" Height="70" Width="auto"/>
-                            <TextBlock Text="{Binding name}" Margin="5,0,0,0" FontSize= "14" VerticalAlignment="Center" />
+                            <Image Source="{Binding Image.Url}" Height="70" Width="auto"/>
+                            <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize= "14" VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            
-        </StackPanel>
-        
-            <Image x:Name="Player1_Image" Stretch="Uniform" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"></Image>
-        <StackPanel Grid.Row="2" Grid.Column="1">
-                <Grid x:Name="JOne">
-                    <StackPanel>
-                        <Label x:Name="Player1_Name" Height="auto" Width="auto" Background="Transparent" FontFamily="Impact" FontSize="16" Foreground="#FF081A3A" HorizontalAlignment="Center"/>
-                        <Label x:Name="PV1" Height="auto" Width="auto" Foreground="#FF081A3A" FontFamily="Impact" FontSize="16" HorizontalAlignment="Center"/>
-                        <Button x:Name="J1P" Content="Attaque physique" Click="J1_AttPhys_Btn" Background="#FF081A3A" Foreground="White" Width="140" Height="30" Margin="0,0,0,10" FontFamily="Impact" FontSize="14"/>
-                        <Button x:Name="J1I" Content="Attaque intellectuelle" Click="J1_AttInt_Btn" Background="#FF081A3A" Foreground="White" Width="140" Height="30" Margin="0,0,0,10" FontFamily="Impact" FontSize="14"/>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
 
-        <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
-            <Label x:Name="WinnerMessage" ></Label>
         </StackPanel>
-            <Image x:Name="Player2_Image" Stretch="Uniform" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center"></Image>
+
+        <Image x:Name="Player1_Image" Stretch="Uniform" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"></Image>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Grid x:Name="JOne">
+                <StackPanel>
+                    <ProgressBar x:Name="PvBar_Player1" Margin="0, 5,0,0 " Height="10" />
+                    <Label x:Name="Player1_Name" Height="auto" Width="auto" Background="Transparent" FontFamily="Impact" FontSize="16" Foreground="#FF081A3A" HorizontalAlignment="Center"/>
+                    <Label x:Name="PV1" Height="auto" Width="auto" Foreground="#FF081A3A" FontFamily="Impact" FontSize="16" HorizontalAlignment="Center"/>
+                    <Button x:Name="J1P" Content="Attaque physique" Click="J1_AttPhys_Btn" Background="#FF081A3A" Foreground="White" Width="140" Height="30" Margin="0,0,0,10" FontFamily="Impact" FontSize="14"/>
+                    <Button x:Name="J1I" Content="Attaque intellectuelle" Click="J1_AttInt_Btn" Background="#FF081A3A" Foreground="White" Width="140" Height="30" Margin="0,0,0,10" FontFamily="Impact" FontSize="14"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label x:Name="WinnerMessage" Foreground="#FF081A3A" FontFamily="Impact" FontSize="20" BorderThickness="4"/>
+        </StackPanel>
+        <Image x:Name="Player2_Image" Stretch="Uniform" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center"></Image>
         <StackPanel Grid.Column="3" Grid.Row="2">
             <Grid x:Name="JTwo">
                 <StackPanel>
-                    <ProgressBar x:Name="PGB"
-                      Value="25"
-                      Height="10" />
+                    <ProgressBar x:Name="PvBar_Player2" Margin="0, 5,0,0 " Height="10" />
                     <Label x:Name="Player2_Name" Height="auto" Width="auto" HorizontalAlignment="Center" Foreground="#FF081A3A" FontFamily="Impact" FontSize="16"/>
                     <Label x:Name="PV2" Height="auto" Width="auto" HorizontalAlignment="Center" Foreground="#FF081A3A" FontFamily="Impact" FontSize="16"></Label>
                     <Button x:Name="J2P" Content="Attaque physique" Click="J2_AttPhys_Btn" Background="#FF081A3A" Width="140" Height="30" FontFamily="Impact" Foreground="White" FontSize="14" FontWeight="Normal" Margin="0,0,0,10"/>
@@ -71,12 +69,12 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.RowSpan="3">
-            <ListBox x:Name="Team2_ListBox" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="Team2_ListBox_SelectionChanged" HorizontalAlignment="Right">
+            <ListBox x:Name="Team2_ListBox" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="Team2_ListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding name}" Margin="5,0,5,0" FontSize= "14" VerticalAlignment="Center" HorizontalAlignment="Right" />
-                            <Image Source="{Binding image.Url}" Height="70" Width="auto" HorizontalAlignment="Right"/>
+                            <Image Source="{Binding Image.Url}" Height="70" Width="auto" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize= "14" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
