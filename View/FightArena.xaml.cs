@@ -41,30 +41,30 @@ namespace Hackathon2
 
         private void J1_AttPhys_Btn(object sender, RoutedEventArgs e)
         {
-            Attack(Joueur1, Joueur2, "Physical Attack");
+            PlayerAttack(Joueur1, Joueur2, "Physical Attack");
         }
 
 
 
         private void J1_AttInt_Btn(object sender, RoutedEventArgs e)
         {
-            Attack(Joueur1, Joueur2, "Intellectual Attack");
+            PlayerAttack(Joueur1, Joueur2, "Intellectual Attack");
 
         }
 
         private void J2_AttPhys_Btn(object sender, RoutedEventArgs e)
         {
-            Attack(Joueur2, Joueur1, "Physical Attack");
+            PlayerAttack(Joueur2, Joueur1, "Physical Attack");
 
         }
 
         private void J2_AttInt_Btn(object sender, RoutedEventArgs e)
         {
-            Attack(Joueur2, Joueur1, "Intellectual Attack");
+            PlayerAttack(Joueur2, Joueur1, "Intellectual Attack");
 
         }
 
-        private void Attack(Character player1, Character player2, string attacjType)
+        private void PlayerAttack(Character player1, Character player2, string attacjType)
         {
             UserAttackChoice attackChoice = new UserAttackChoice();
             attackChoice.attackingPlayer = player1;
