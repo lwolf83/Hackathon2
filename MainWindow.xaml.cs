@@ -24,8 +24,24 @@ namespace Hackathon2
         {
             InitializeComponent();
             Character test = ApiRequest.GetCharacter(58);
-            CharacterPicture.Picture.Source = new BitmapImage(
-                                                    new Uri(test.image.Url, UriKind.Absolute)); 
+            //CharacterPicture.Picture.Source = new BitmapImage(
+            //new Uri(test.image.Url, UriKind.Absolute));
+
+            List<Person> persons = new List<Person>() {
+                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"},
+                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"},
+                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"},
+                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"},
+                new Person() { Name = "John", Image = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"}
+            };
+            PersonList.ItemsSource = persons;
+            PersonList1.ItemsSource = persons;
         }
+    }
+
+    public class Person
+    {
+        public string Name { get; set; }
+        public string Image { get; set; }
     }
 }
