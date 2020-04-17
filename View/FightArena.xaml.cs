@@ -23,19 +23,12 @@ namespace Hackathon2
         public Character SelectedCharacterT2 { get; set; }
         private MainWindow mainWindow;
 
-<<<<<<< HEAD
-        public FightArena(List<Character> team1, List<Character> team2, MainWindow mainWindow)
-=======
         public List<string> FightMessages { get; set; } = new List<string>();
-
-
 
         private string _nameTeam1;
         private string _nameTeam2;
 
-
-        public FightArena(List<Character> team1, List<Character> team2)
->>>>>>> master
+        public FightArena(List<Character> team1, List<Character> team2, MainWindow mainWindow)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
@@ -271,17 +264,15 @@ namespace Hackathon2
             }
         }
 
-<<<<<<< HEAD
         private void Btn_Back(object sender, RoutedEventArgs e)
         {
             mainWindow.GoBackToStartPage();
-=======
+        }
         private void PlayerMessage(string name)
         {
             Random random = new Random();
             string message = name + FightMessages[random.Next(0, FightMessages.Count)];
             MessagesBox.Text = message;
->>>>>>> master
         }
     }
 }
