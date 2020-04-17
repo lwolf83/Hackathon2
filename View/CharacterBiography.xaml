@@ -14,8 +14,8 @@
         <Grid.Resources>
             <Style x:Key="TitleStyle">
                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                <Setter Property="TextBlock.FontFamily" Value="#Shrikhand" />
-                <Setter Property="TextBlock.FontWeight" Value="Bold" />
+                <Setter Property="TextBlock.FontFamily" Value="Shrikhand" />
+                <Setter Property="TextBlock.FontWeight" Value="Light" />
                 <Setter Property="TextBlock.FontSize" Value="15" />
                 <Setter Property="TextBlock.Foreground" Value="#FEEDFD" />
             </Style>
@@ -23,7 +23,7 @@
                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                 <Setter Property="TextBlock.FontWeight" Value="Light" />
                 <Setter Property="TextBlock.FontSize" Value="12" />
-                <Setter Property="TextBlock.FontFamily" Value="Shrikhand" />
+                <Setter Property="TextBlock.FontFamily" Value="Arial" />
                 <Setter Property="TextBlock.Foreground" Value="#FEEDFD" />
             </Style>
         </Grid.Resources>
@@ -53,7 +53,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Biography.Alignment}" FontSize="15" Style="{StaticResource TextStyle}" Foreground="DarkRed" FontWeight="Bold" Margin="5,5,0,5"/>
+                        <TextBlock Text="{Binding Biography.Alignment}" FontSize="15" Style="{StaticResource TextStyle}" FontFamily="Shrikhand" Foreground="DarkRed" FontWeight="Bold" Margin="5,5,0,5"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Label Content="Bio : " Style="{StaticResource TitleStyle}"/>
@@ -70,15 +70,15 @@
         
             <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
                 <StackPanel >
-                    <StackPanel Margin="0,0,0,10">
+                    <StackPanel Margin="0,0,0,5">
                         <TextBlock Text="Strength" Style="{StaticResource TextStyle}"/>
                         <ProgressBar Value="{Binding Powerstats.Strength}" Height="5" ></ProgressBar>
                     </StackPanel>
-                    <StackPanel Margin="0,0,0,10">
+                    <StackPanel Margin="0,0,0,5">
                         <TextBlock Text="Combat" Style="{StaticResource TextStyle}"/>
                         <ProgressBar Value="{Binding Powerstats.Combat}" Height="5"></ProgressBar>
                     </StackPanel>
-                    <StackPanel Margin="0,0,0,10">
+                    <StackPanel Margin="0,0,0,5">
                         <TextBlock Text="Intelligence" Style="{StaticResource TextStyle}"/>
                         <ProgressBar Value="{Binding Powerstats.Intelligence}" Height="5"></ProgressBar>
                     </StackPanel>
@@ -86,15 +86,15 @@
             </Grid>
             <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" >
                 <StackPanel>
-                    <StackPanel Margin="0,0,0,10">
+                    <StackPanel Margin="0,0,0,5">
                         <TextBlock Text="Speed" Style="{StaticResource TextStyle}"/>
                         <ProgressBar Value="{Binding Powerstats.Speed}" Height="5"></ProgressBar>
                     </StackPanel>
-                    <StackPanel Margin="0,0,0,10">
+                    <StackPanel Margin="0,0,0,5">
                         <TextBlock Text="Durability" Style="{StaticResource TextStyle}"/>
                         <ProgressBar Value="{Binding Powerstats.Durability}" Height="5"></ProgressBar>
                     </StackPanel>
-                    <StackPanel Margin="0,0,0,10">
+                    <StackPanel Margin="0,0,0,5">
                         <TextBlock Text="Power" Style="{StaticResource TextStyle}"/>
                         <ProgressBar Value="{Binding Powerstats.Power}" Height="5"></ProgressBar>
                     </StackPanel>
