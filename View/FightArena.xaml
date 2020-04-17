@@ -86,6 +86,9 @@
         <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock x:Name="WinnerMessage" FontFamily="ROG Fonts" FontSize="15" Foreground="White" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
         </StackPanel>
+        <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10, 0, 10, 0">
+            <TextBlock x:Name="MessagesBox" FontFamily="ROG Fonts" FontSize="12" Foreground="White" TextAlignment="Center" TextWrapping="Wrap"/>
+        </Grid>
 
         <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.RowSpan="2" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>

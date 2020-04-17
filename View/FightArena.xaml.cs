@@ -21,8 +21,14 @@ namespace Hackathon2
         public Fight CurrentFight { get; set; }
         public Character SelectedCharacterT1 { get; set; }
         public Character SelectedCharacterT2 { get; set; }
+
+        public List<string> FightMessages { get; set; } = new List<string>();
+
+
+
         private string _nameTeam1;
         private string _nameTeam2;
+
 
         public FightArena(List<Character> team1, List<Character> team2)
         {
@@ -60,6 +66,7 @@ namespace Hackathon2
             CurrentFight = new Fight(Team1, Team2);
             ActivatePlayingTeam();
             AQuiLeTour.Text = SelectedCharacterT1.Name + " vs "  + SelectedCharacterT2.Name;
+            FightMessages = Fight.GetFightMessages();
         }
 
         private void J1_AttPhys_Btn(object sender, RoutedEventArgs e)
@@ -69,7 +76,7 @@ namespace Hackathon2
             PlayerAttack(attacker, defender, "Physical Attack");
             PV2.Content = SelectedCharacterT2.PV;
             PvBar_Player2.Value = SelectedCharacterT2.PV;
-
+            PlayerMessage(attacker.Name);
         }
 
         private void J1_AttInt_Btn(object sender, RoutedEventArgs e)
@@ -79,7 +86,7 @@ namespace Hackathon2
             PlayerAttack(attacker, defender, "Intellectual Attack");
             PV2.Content = SelectedCharacterT2.PV;
             PvBar_Player2.Value = SelectedCharacterT2.PV;
-
+            PlayerMessage(attacker.Name);
         }
 
         private void J2_AttPhys_Btn(object sender, RoutedEventArgs e)
@@ -89,6 +96,7 @@ namespace Hackathon2
             PlayerAttack(attacker, defender, "Physical Attack");
             PV1.Content = SelectedCharacterT1.PV;
             PvBar_Player1.Value = SelectedCharacterT1.PV;
+            PlayerMessage(attacker.Name);
         }
 
         private void J2_AttInt_Btn(object sender, RoutedEventArgs e)
@@ -98,6 +106,7 @@ namespace Hackathon2
             PlayerAttack(attacker, defender, "Intellectual Attack");
             PV1.Content = SelectedCharacterT1.PV;
             PvBar_Player1.Value = SelectedCharacterT1.PV;
+            PlayerMessage(attacker.Name);
         }
 
         private void PlayerAttack(Character player1, Character player2, string attacjType)
@@ -170,6 +179,7 @@ namespace Hackathon2
 
         private void DisplayWinner()
         {
+            MessagesBox.Visibility = Visibility.Collapsed;
             WinnerMessage.Text = "The Winners Team : \n";
             if(Team1.Count>0)
             {
@@ -253,6 +263,13 @@ namespace Hackathon2
                 AQuiLeTour.Text = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
                 
             }
+        }
+
+        private void PlayerMessage(string name)
+        {
+            Random random = new Random();
+            string message = name + FightMessages[random.Next(0, FightMessages.Count)];
+            MessagesBox.Text = message;
         }
     }
 }
