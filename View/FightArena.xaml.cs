@@ -22,19 +22,12 @@ namespace Hackathon2
         public Character SelectedCharacterT1 { get; set; }
         public Character SelectedCharacterT2 { get; set; }
 
-        public FightArena()
+        public FightArena(List<Character> team1, List<Character> team2)
         {
-            //List<Character> team1, List<Character> team2
             InitializeComponent();
-            //Team1 = team1;
-            //Team2 = team2;
-            Team1.Add(ApiRequest.GetCharacter(69));
-            Team1.Add(ApiRequest.GetCharacter(275));
-            Team1.Add(ApiRequest.GetCharacter(23));
+            Team1 = team1;
+            Team2 = team2;
             Team1.ForEach(x => x.Init());
-            Team2.Add(ApiRequest.GetCharacter(58));
-            Team2.Add(ApiRequest.GetCharacter(310));
-            Team2.Add(ApiRequest.GetCharacter(400));
             Team2.ForEach(x => x.Init());
 
             SelectedCharacterT1 = Team1[0];
