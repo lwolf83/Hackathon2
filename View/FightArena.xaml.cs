@@ -21,10 +21,12 @@ namespace Hackathon2
         public Fight CurrentFight { get; set; }
         public Character SelectedCharacterT1 { get; set; }
         public Character SelectedCharacterT2 { get; set; }
+        private MainWindow mainWindow;
 
-        public FightArena(List<Character> team1, List<Character> team2)
+        public FightArena(List<Character> team1, List<Character> team2, MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
             Team1 = team1;
             Team2 = team2;
             Team1.ForEach(x => x.Init());
@@ -219,6 +221,11 @@ namespace Hackathon2
                 AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
                 
             }
+        }
+
+        private void Btn_Back(object sender, RoutedEventArgs e)
+        {
+            mainWindow.GoBackToStartPage();
         }
     }
     

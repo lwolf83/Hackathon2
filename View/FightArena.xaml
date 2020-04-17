@@ -82,5 +82,9 @@
 
         </StackPanel>
 
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Click="Btn_Back" VerticalAlignment="Bottom" Margin="20,20,20,50" Background="#FF081A3A" Width="200" Height="80">
+            <TextBlock Text="Return to characters selection" TextWrapping="Wrap" TextAlignment="Center" FontFamily="#Shrikhand" Foreground="White" FontSize="14" FontWeight="ExtraLight"/>
+        </Button>
+
     </Grid>
 </UserControl>
