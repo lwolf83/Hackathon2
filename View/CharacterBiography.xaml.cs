@@ -24,5 +24,6 @@ namespace Hackathon2
             //Character currentCharacter = ApiRequest.GetCharacter(70)
             DataContext = currentCharacter;
         }
+
     }
 }
