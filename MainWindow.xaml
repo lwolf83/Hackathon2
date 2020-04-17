@@ -83,7 +83,7 @@
         <local:CharacterSelector x:Name="GoodCharacter" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" />
         <local:CharacterSelector x:Name="BadCharacter"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" />
 
-        <Frame x:Name="Biography_Frame" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="180" Width="400" Background="DarkGray" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="Biography_Frame" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="200" Width="500" Background="DarkGray" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>
