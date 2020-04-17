@@ -33,6 +33,7 @@ namespace Hackathon2
         public List<Character> GoodTeam { get; set; } = new List<Character>();
         public List<Character> BadTeam { get; set; } = new List<Character>();
 
+        private object content;
 
         public MainWindow()
         {
@@ -54,6 +55,7 @@ namespace Hackathon2
             GoodCharacter.PersonList.ItemsSource = GoodCharacters;
             BadCharacter.PersonList.ItemsSource = BadCharacters;
 
+            content = Content;
         }
 
         public void GetCharacters()
@@ -64,8 +66,8 @@ namespace Hackathon2
             if (GoodCharacters.Count < 9 || BadCharacters.Count < 9)
             {
                 id = gen.Next(1, 730);
-                if(GoodCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0 && BadCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0)
-                { 
+                if (GoodCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0 && BadCharacters.Where(x => Convert.ToInt32(x.Id) == id).Count() == 0)
+                {
                     Character character = ApiRequest.GetCharacter(id);
                     _mut.WaitOne();
                     cpt++;
@@ -76,7 +78,7 @@ namespace Hackathon2
                         GoodCharacters.Add(character);
                         _mut.ReleaseMutex();
                     }
-                    else if ((character.Biography.Alignment == "bad") && (! BadCharacters.Contains(character) && BadCharacters.Count < 9))
+                    else if ((character.Biography.Alignment == "bad") && (!BadCharacters.Contains(character) && BadCharacters.Count < 9))
                     {
                         _mut.WaitOne();
                         BadCharacters.Add(character);
@@ -102,15 +104,20 @@ namespace Hackathon2
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
-            if(GoodTeam.Count.Equals(BadTeam.Count) && (BadTeam.Count != 0))
+            if (GoodTeam.Count.Equals(BadTeam.Count) && (BadTeam.Count != 0))
             {
-                FightArena arena = new FightArena(GoodTeam, BadTeam);
+                FightArena arena = new FightArena(GoodTeam, BadTeam, this);
                 this.Content = arena;
             }
             else
             {
                 MessageBox.Show("Read Carefully Game Rules !!! \nTeams Not Null & Equals\nMax 4 Heroes Each Team");
             }
+        }
+
+        public void GoBackToStartPage()
+        {
+            Content = content;
         }
     }
 }
