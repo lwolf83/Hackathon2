@@ -10,6 +10,7 @@ namespace Hackathon2
         public List<Character> Team1 { get; set; }
         public List<Character> Team2 { get; set; }
         public List<Character> WinnerTeam { get; set; }
+
         private UserAttackChoice _UserAttackChoice = new UserAttackChoice();
         public bool isTeamOnePlaying { get; set; }
 
@@ -60,10 +61,18 @@ namespace Hackathon2
                 {
                     attacker.PhysicalAttack(defender);
                 }
+                if(defender.PV <0)
+                {
+                    defender.PV = 0;
+                }
             }
             else if (_UserAttackChoice.playerAttackType == "Intellectual Attack")
             {
                 attacker.IntellectualAttack(defender);
+                if (defender.PV < 0)
+                {
+                    defender.PV = 0;
+                }
             }
         }
 
@@ -104,6 +113,31 @@ namespace Hackathon2
             }
         }
 
+        public static List<string> GetFightMessages()
+        {
+            List<string> fightMessages = new List<string>();
+            fightMessages.Add(" is AMAZING !!");
+            fightMessages.Add(" , you're a LOOSER :p");
+            fightMessages.Add(" , what a beautiful attack !");
+            fightMessages.Add(" you won't be able to defeat ME !");
+            fightMessages.Add(" it won't work AGAINST ME !");
+            fightMessages.Add(" , you are a real jeark!");
+            fightMessages.Add(" is like dancing in the sky!");
+            fightMessages.Add(" , it's a love story!");
+            fightMessages.Add(" : \"I believe I can fly...\"");
+            fightMessages.Add(" : \"Hello pretty!\" ");
+            fightMessages.Add(" : \"What the hell is going on?!\"");
+            fightMessages.Add(" , also called the magnificient");
+            fightMessages.Add(" : \"I kill you!\" ");
+            fightMessages.Add(" do you know how long it takes to kill your opposant?...");
+            fightMessages.Add(" is a real badasssssss (and handsome) guy!");
+            fightMessages.Add(" what about taking a shower?");
+            fightMessages.Add(" , make love, not war");
+
+            return fightMessages;
+        }   
+    }
+}
 
         /*public string UserAttackChoice(UserAttackChoice userAttack)
         {
@@ -112,5 +146,4 @@ namespace Hackathon2
             // valeur du Bouton
             return choice;
         }*/
-    }
-}
+    
