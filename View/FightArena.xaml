@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Hackathon2.View"
              mc:Ignorable="d" 
-             d:DesignHeight="900" d:DesignWidth="1000">
+             d:DesignHeight="900" d:DesignWidth="1200">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -37,7 +37,7 @@
             <TextBlock x:Name="AQuiLeTour" HorizontalAlignment="Center" TextAlignment="Center" Foreground="White" FontFamily="ROG Fonts" FontSize="40" TextWrapping="WrapWithOverflow"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.RowSpan="3">
-            <ListBox x:Name="Team1_ListBox" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="Team1_ListBox_SelectionChanged">
+            <ListBox x:Name="Team1_ListBox" SelectionChanged="Team1_ListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -71,8 +71,8 @@
             </Grid>
         </Grid>
 
-        <StackPanel Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="WinnerMessage" FontFamily="ROG Fonts" FontSize="20" Foreground="White" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
+        <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="WinnerMessage" FontFamily="ROG Fonts" FontSize="15" Foreground="White" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
         </StackPanel>
 
         <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.RowSpan="2" VerticalAlignment="Center">
@@ -98,7 +98,7 @@
         </Grid>
 
         <StackPanel Grid.Column="4" Grid.RowSpan="3">
-            <ListBox x:Name="Team2_ListBox" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="Team2_ListBox_SelectionChanged">
+            <ListBox x:Name="Team2_ListBox" SelectionChanged="Team2_ListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

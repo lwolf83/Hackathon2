@@ -102,10 +102,6 @@ namespace Hackathon2
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-            //FightArena arena = new FightArena(GoodTeam, BadTeam);
-            //this.Content = arena;
-=======
             if(GoodTeam.Count.Equals(BadTeam.Count) && (BadTeam.Count != 0))
             {
                 FightArena arena = new FightArena(GoodTeam, BadTeam);
@@ -115,9 +111,6 @@ namespace Hackathon2
             {
                 MessageBox.Show("Read Carefully Game Rules !!! \nTeams Not Null & Equals\nMax 4 Heroes Each Team");
             }
->>>>>>> master
         }
-
-
     }
 }
