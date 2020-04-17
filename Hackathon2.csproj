@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\bottomimage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="1.2.3" />
     <PackageReference Include="MaterialDesignThemes" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -14,6 +18,10 @@
 
   <ItemGroup>
     <Folder Include="Ressources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\bottomimage.png" />
   </ItemGroup>
 
 </Project>

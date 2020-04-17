@@ -79,8 +79,8 @@ namespace Hackathon2
 
         private void ButtonPlay_Click(object sender, RoutedEventArgs e)
         {
-            FightArena arena = new FightArena(GoodTeam, BadTeam);
-            this.Content = arena;
+            //FightArena arena = new FightArena(GoodTeam, BadTeam);
+            //this.Content = arena;
         }
     }
 }

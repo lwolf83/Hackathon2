@@ -60,7 +60,7 @@ namespace Hackathon2
 
             CurrentFight = new Fight(Team1, Team2);
             ActivatePlayingTeam();
-            AQuiLeTour.Content = SelectedCharacterT1.Name + " vs "  + SelectedCharacterT2.Name;
+            AQuiLeTour.Text = SelectedCharacterT1.Name + " vs "  + SelectedCharacterT2.Name;
         }
 
         private void J1_AttPhys_Btn(object sender, RoutedEventArgs e)
@@ -152,9 +152,9 @@ namespace Hackathon2
 
         private void DisplayWinner()
         {
-            WinnerMessage.Content = "The Winners Team : ";
+            WinnerMessage.Text = "The Winners Team : \n";
             List<string> winnersName = CurrentFight.WinnerTeam.Select(x => x.Name).ToList();
-            winnersName.ForEach(x => WinnerMessage.Content += "\n" + x + "\n");
+            winnersName.ForEach(x => WinnerMessage.Text += "\n" + x + "\n");
         }
 
         private void DisabledPlayerOne()
@@ -201,7 +201,7 @@ namespace Hackathon2
                 PV1.Content = SelectedCharacterT1.PV;
                 PvBar_Player1.Maximum = SelectedCharacterT1.PVmax;
                 PvBar_Player1.Value = SelectedCharacterT1.PV;
-                AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
+                AQuiLeTour.Text = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
             }
         }
 
@@ -223,10 +223,9 @@ namespace Hackathon2
                 PV2.Content = SelectedCharacterT2.PV;
                 PvBar_Player2.Maximum = SelectedCharacterT2.PVmax;
                 PvBar_Player2.Value = SelectedCharacterT2.PV;
-                AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
+                AQuiLeTour.Text = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
                 
             }
         }
     }
-    
 }
