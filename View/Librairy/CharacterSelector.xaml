@@ -39,7 +39,7 @@
                                 <RowDefinition Height="0.4*"/>
                             </Grid.RowDefinitions>
                             <Image Source="{Binding Image.Url}" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-                            <Button ToolTip="Info" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" MouseEnter="OnMouseEnter_Info" MouseLeave="OnMouseLeave_Info">
+                            <Button Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" MouseEnter="OnMouseEnter_Info" MouseLeave="OnMouseLeave_Info">
                                 <materialDesign:PackIcon
                                     Kind="InfoCircleOutline"
                                     Height="25"
