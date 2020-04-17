@@ -6,7 +6,19 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Hackathon2.View"
              mc:Ignorable="d" 
-             d:DesignHeight="900" d:DesignWidth="1200">
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Opacity" Value="0.5" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="Opacity" Value="1.0" />
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -14,7 +26,7 @@
                 <GradientStop Color="#FFD10000" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="12*"/>
             <RowDefinition Height="109*"/>
@@ -41,7 +53,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding Image.Url}" Height="70" Width="auto"/>
+                            <Image Source="{Binding Image.Url}" Height="70" Width="auto" />
                             <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize= "10" VerticalAlignment="Center" FontFamily="ROG Fonts" Foreground="White" />
                         </StackPanel>
                     </DataTemplate>
