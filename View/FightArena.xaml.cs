@@ -21,6 +21,8 @@ namespace Hackathon2
         public Fight CurrentFight { get; set; }
         public Character SelectedCharacterT1 { get; set; }
         public Character SelectedCharacterT2 { get; set; }
+        private string _nameTeam1;
+        private string _nameTeam2;
 
         public FightArena(List<Character> team1, List<Character> team2)
         {
@@ -29,6 +31,8 @@ namespace Hackathon2
             Team2 = team2;
             Team1.ForEach(x => x.Init());
             Team2.ForEach(x => x.Init());
+            Team1.Select(x => x.Name).ToList().ForEach(x => _nameTeam1 += "\n" + x + "\n");
+            Team2.Select(x => x.Name).ToList().ForEach(x => _nameTeam2 += "\n" + x + "\n");
 
             SelectedCharacterT1 = Team1[0];
             Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.Image.Url));
@@ -40,7 +44,9 @@ namespace Hackathon2
             Player2_Name.Content = SelectedCharacterT2.Name;
 
             Team1_ListBox.ItemsSource = Team1;
+            Team1_ListBox.SelectedItem = SelectedCharacterT1;
             Team2_ListBox.ItemsSource = Team2;
+            Team2_ListBox.SelectedItem = SelectedCharacterT2;
 
             PV1.Content = SelectedCharacterT1.PV;
             PV2.Content = SelectedCharacterT2.PV;
@@ -53,7 +59,7 @@ namespace Hackathon2
 
             CurrentFight = new Fight(Team1, Team2);
             ActivatePlayingTeam();
-            AQuiLeTour.Content = SelectedCharacterT1.Name + " vs "  + SelectedCharacterT2.Name;
+            AQuiLeTour.Text = SelectedCharacterT1.Name + " vs "  + SelectedCharacterT2.Name;
         }
 
         private void J1_AttPhys_Btn(object sender, RoutedEventArgs e)
@@ -118,15 +124,34 @@ namespace Hackathon2
             {
                 Team1_ListBox.ItemsSource = null;
                 Team1_ListBox.ItemsSource = Team1;
-                
+                if (Team1.Count > 0)
+                {
+                    SelectedCharacterT1 = Team1[0];
+                    Team1_ListBox.SelectedItem = SelectedCharacterT1;
+                    Player1_Image.Source = new BitmapImage(new Uri(SelectedCharacterT1.Image.Url));
+                    Player1_Name.Content = SelectedCharacterT1.Name;
+                    PV1.Content = SelectedCharacterT1.PV;
+                    PvBar_Player1.Maximum = SelectedCharacterT1.PVmax;
+                    PvBar_Player1.Value = SelectedCharacterT1.PV;
+                    AQuiLeTour.Text = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
+                }
             }
             else if (SelectedCharacterT2.PV <= 0)
             {
                 Team2_ListBox.ItemsSource = null;
                 Team2_ListBox.ItemsSource = Team2;
-
+                if (Team2.Count > 0)
+                {
+                    SelectedCharacterT2 = Team2[0];
+                    Team2_ListBox.SelectedItem = SelectedCharacterT2;
+                    Player2_Image.Source = new BitmapImage(new Uri(SelectedCharacterT2.Image.Url));
+                    Player2_Name.Content = SelectedCharacterT2.Name;
+                    PV2.Content = SelectedCharacterT2.PV;
+                    PvBar_Player2.Maximum = SelectedCharacterT2.PVmax;
+                    PvBar_Player2.Value = SelectedCharacterT2.PV;
+                    AQuiLeTour.Text = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
+                }
             }
-
         }
 
         private void ActivatePlayingTeam()
@@ -145,9 +170,19 @@ namespace Hackathon2
 
         private void DisplayWinner()
         {
-            WinnerMessage.Content = "The Winners Team : ";
-            List<string> winnersName = CurrentFight.WinnerTeam.Select(x => x.Name).ToList();
-            winnersName.ForEach(x => WinnerMessage.Content += "\n" + x + "\n");
+            WinnerMessage.Text = "The Winners Team : \n";
+            if(Team1.Count>0)
+            {
+                WinnerMessage.Text += _nameTeam1;
+                Player2_Image.Source = new BitmapImage(new Uri("https://www.123-stickers.com/3766-3888-large/Array.jpg"));
+                
+            }
+            else
+            {
+                WinnerMessage.Text += _nameTeam2;
+                Player1_Image.Source = new BitmapImage(new Uri("https://www.123-stickers.com/3766-3888-large/Array.jpg"));
+                
+            }
         }
 
         private void DisabledPlayerOne()
@@ -181,7 +216,6 @@ namespace Hackathon2
             {
                 if ((Character)Team1_ListBox.SelectedItem == null)
                 {
-
                     SelectedCharacterT1 = Team1[0];
                 }
                 else
@@ -194,7 +228,7 @@ namespace Hackathon2
                 PV1.Content = SelectedCharacterT1.PV;
                 PvBar_Player1.Maximum = SelectedCharacterT1.PVmax;
                 PvBar_Player1.Value = SelectedCharacterT1.PV;
-                AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
+                AQuiLeTour.Text = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
             }
         }
 
@@ -216,10 +250,9 @@ namespace Hackathon2
                 PV2.Content = SelectedCharacterT2.PV;
                 PvBar_Player2.Maximum = SelectedCharacterT2.PVmax;
                 PvBar_Player2.Value = SelectedCharacterT2.PV;
-                AQuiLeTour.Content = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
+                AQuiLeTour.Text = SelectedCharacterT1.Name + " vs " + SelectedCharacterT2.Name;
                 
             }
         }
     }
-    
 }
