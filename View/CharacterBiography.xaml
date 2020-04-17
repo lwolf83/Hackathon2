@@ -10,11 +10,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="500">
     <Border BorderBrush="#303030" BorderThickness="5">   
-    <Grid Margin="20,10,20,10">
+    <Grid Margin="10,10,20,10">
         <Grid.Resources>
             <Style x:Key="TitleStyle">
                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                <Setter Property="TextBlock.FontFamily" Value="/Ressources/#Shrikhand" />
+                <Setter Property="TextBlock.FontFamily" Value="#Shrikhand" />
                 <Setter Property="TextBlock.FontWeight" Value="Bold" />
                 <Setter Property="TextBlock.FontSize" Value="15" />
                 <Setter Property="TextBlock.Foreground" Value="#FEEDFD" />
@@ -23,7 +23,7 @@
                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                 <Setter Property="TextBlock.FontWeight" Value="Light" />
                 <Setter Property="TextBlock.FontSize" Value="12" />
-                <Setter Property="TextBlock.FontFamily" Value="/Ressources/#Shrikhand" />
+                <Setter Property="TextBlock.FontFamily" Value="Shrikhand" />
                 <Setter Property="TextBlock.Foreground" Value="#FEEDFD" />
             </Style>
         </Grid.Resources>
@@ -38,62 +38,65 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Biography.Fullname}" FontWeight="ExtraBold" HorizontalAlignment="Center" FontSize="25"/>
-
-            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" >
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Name}" TextWrapping="Wrap" FontWeight="ExtraBold" HorizontalAlignment="Center" FontSize="25"/>
+                <TextBlock Text="{Binding Biography.Fullname}" FontSize="10" HorizontalAlignment="Center" Foreground="White"/>
+            </StackPanel>
+        
+            <Grid Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Alignement : " Style="{StaticResource TitleStyle}"/>
-                    <TextBlock Text="{Binding Biography.Alignment}" FontSize="15" Style="{StaticResource TextStyle}"  Margin="5,5,0,5"/>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Biography.Alignment}" FontSize="15" Style="{StaticResource TextStyle}" Foreground="DarkRed" FontWeight="Bold" Margin="5,5,0,5"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Job : " Style="{StaticResource TitleStyle}"/>
-                    <TextBlock Text="{Binding Work.Occupation}" Style="{StaticResource TextStyle}" Margin="5,7,0,5"/>
-                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Bio : " Style="{StaticResource TitleStyle}"/>
+                        <TextBlock Text="{Binding Biography.Alteregos}" Style="{StaticResource TextStyle}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding Biography.PlaceOfBirth}" Style="{StaticResource TextStyle}" TextWrapping="Wrap"/>
+                    </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Column="1"  Grid.Row="0">
-                <Label Content="Biography : " Style="{StaticResource TitleStyle}"/>
-                <TextBlock Text="{Binding Biography.Alteregos}" Style="{StaticResource TextStyle}"/>
-                <TextBlock Text="{Binding Biography.PlaceOfBirth}" Style="{StaticResource TextStyle}"/>
+                <Label Content="Job : " Style="{StaticResource TitleStyle}"/>
+                    <TextBlock Text="{Binding Work.Occupation}" Style="{StaticResource TextStyle}" Margin="0,0,5,0"  TextWrapping="Wrap"/>
             </StackPanel>
 
         </Grid>
         
-            <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
                 <StackPanel >
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock Text="Strength" Style="{StaticResource TextStyle}"/>
-                        <ProgressBar Value="{Binding Powerstats.Strength}" Height="10" ></ProgressBar>
+                        <ProgressBar Value="{Binding Powerstats.Strength}" Height="5" ></ProgressBar>
                     </StackPanel>
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock Text="Combat" Style="{StaticResource TextStyle}"/>
-                        <ProgressBar Value="{Binding Powerstats.Combat}" Height="10"></ProgressBar>
+                        <ProgressBar Value="{Binding Powerstats.Combat}" Height="5"></ProgressBar>
                     </StackPanel>
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock Text="Intelligence" Style="{StaticResource TextStyle}"/>
-                        <ProgressBar Value="{Binding Powerstats.Intelligence}" Height="10"></ProgressBar>
+                        <ProgressBar Value="{Binding Powerstats.Intelligence}" Height="5"></ProgressBar>
                     </StackPanel>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" >
+            <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" >
                 <StackPanel>
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock Text="Speed" Style="{StaticResource TextStyle}"/>
-                        <ProgressBar Value="{Binding Powerstats.Speed}" Height="10"></ProgressBar>
+                        <ProgressBar Value="{Binding Powerstats.Speed}" Height="5"></ProgressBar>
                     </StackPanel>
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock Text="Durability" Style="{StaticResource TextStyle}"/>
-                        <ProgressBar Value="{Binding Powerstats.Durability}" Height="10"></ProgressBar>
+                        <ProgressBar Value="{Binding Powerstats.Durability}" Height="5"></ProgressBar>
                     </StackPanel>
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock Text="Power" Style="{StaticResource TextStyle}"/>
-                        <ProgressBar Value="{Binding Powerstats.Power}" Height="10"></ProgressBar>
+                        <ProgressBar Value="{Binding Powerstats.Power}" Height="5"></ProgressBar>
                     </StackPanel>
                 </StackPanel>
             </Grid>
